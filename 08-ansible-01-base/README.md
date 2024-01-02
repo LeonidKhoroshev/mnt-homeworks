@@ -1,10 +1,17 @@
-# Домашнее задание к занятию 1 «Введение в Ansible»
+# Домашнее задание к занятию 1 «Введение в Ansible» - Леонид Хорошев
 
 ## Подготовка к выполнению
 
 1. Установите Ansible версии 2.10 или выше.
+   ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-01-base/screenshots/ansible1.png)
 2. Создайте свой публичный репозиторий на GitHub с произвольным именем.
 3. Скачайте [Playbook](./playbook/) из репозитория с домашним заданием и перенесите его в свой репозиторий.
+   ```
+   mkdir ansible
+   cd ansible
+   git init
+   git pull https://github.com/LeonidKhoroshev/mnt-homeworks
+   ```
 
 ## Основная часть
 
