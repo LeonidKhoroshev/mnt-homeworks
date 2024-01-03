@@ -131,7 +131,7 @@ ansible-vault encrypt_string PaSSw0rd --ask-vault-pass
 ```
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-01-base/screenshots/ansible13.png)
 
-```
+
 
 3. Запустите `playbook`, убедитесь, что для нужных хостов применился новый `fact`.
 4. Добавьте новую группу хостов `fedora`, самостоятельно придумайте для неё переменную. В качестве образа можно использовать [этот вариант](https://hub.docker.com/r/pycontribs/fedora).
