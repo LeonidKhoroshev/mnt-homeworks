@@ -131,9 +131,13 @@ ansible-vault encrypt_string PaSSw0rd --ask-vault-pass
 ```
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-01-base/screenshots/ansible13.png)
 
-
-
 3. Запустите `playbook`, убедитесь, что для нужных хостов применился новый `fact`.
+
+```
+ansible-playbook -i inventory/prod.yml site.yml --ask-vault-pass
+```
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-01-base/screenshots/ansible14.png)
+
 4. Добавьте новую группу хостов `fedora`, самостоятельно придумайте для неё переменную. В качестве образа можно использовать [этот вариант](https://hub.docker.com/r/pycontribs/fedora).
 5. Напишите скрипт на bash: автоматизируйте поднятие необходимых контейнеров, запуск ansible-playbook и остановку контейнеров.
 6. Все изменения должны быть зафиксированы и отправлены в ваш личный репозиторий.
