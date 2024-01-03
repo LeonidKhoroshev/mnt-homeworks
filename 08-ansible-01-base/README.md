@@ -139,13 +139,33 @@ ansible-playbook -i inventory/prod.yml site.yml --ask-vault-pass
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-01-base/screenshots/ansible14.png)
 
 4. Добавьте новую группу хостов `fedora`, самостоятельно придумайте для неё переменную. В качестве образа можно использовать [этот вариант](https://hub.docker.com/r/pycontribs/fedora).
-5. Напишите скрипт на bash: автоматизируйте поднятие необходимых контейнеров, запуск ansible-playbook и остановку контейнеров.
-6. Все изменения должны быть зафиксированы и отправлены в ваш личный репозиторий.
 
----
+Запускаем предложенный контейнер
+```
+docker run --name fedora -d pycontribs/fedora sleep 360
+```
+Добавляем переменную
+```
+mkdir fedora
+nano fedora/examp.yml
+--
+  some_fact: "fedora default fact"
+```
+Добавляем хост в prod окружение
+```
+nano prod.yml
 
-### Как оформить решение задания
+  fedora:
+    hosts:
+      fedora:
+        ansible_connection: docker
 
-Выполненное домашнее задание пришлите в виде ссылки на .md-файл в вашем репозитории.
+```
 
----
+Запускаем playbook
+```
+ansible-playbook -i inventory/prod.yml site.yml --ask-vault-pass
+```
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-01-base/screenshots/ansible15.png)
+
+
