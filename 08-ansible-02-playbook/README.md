@@ -65,10 +65,18 @@ path_file:  "/tmp/vector-%Y-%m-%d.log"
 3. При создании tasks рекомендую использовать модули: `get_url`, `template`, `unarchive`, `file`.
 4. Tasks должны: скачать дистрибутив нужной версии, выполнить распаковку в выбранную директорию, установить vector.
 5. Запустите `ansible-lint site.yml` и исправьте ошибки, если они есть.
+```
+ansible-lint site.yml
+```
+ ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-02-playbook/screenshots/ansible1.png)
+Замечание исправлено удалением лишних пробелов в конце указанных строк.
+
 6. Попробуйте запустить playbook на этом окружении с флагом `--check`.
 ```
 ansible-playbook -i inventory/prod.yml site.yml --check
 ```
+ ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-02-playbook/screenshots/ansible2.png)
+
 
 7. Запустите playbook на `prod.yml` окружении с флагом `--diff`. Убедитесь, что изменения на системе произведены.
 8. Повторно запустите playbook с флагом `--diff` и убедитесь, что playbook идемпотентен.
