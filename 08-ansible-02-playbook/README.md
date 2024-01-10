@@ -25,30 +25,30 @@ clickhouse:
 ```
 mkdir template
 cd template
-nano vector.yml
+nano vector.j2
 
 sources:
   my_source_id:
     type: file
     include:
-      - /var/log/mongodb/mongod.log
+      - {{ sourse_file }}
 
 transforms:
   my_transform_id:
     type: lua
     inputs:
-      - my_source_id
-    version: "1"
+      - my_source_id:
+    version: {{ version_number }}
 
 sinks:
   my_sink_id:
     type: file
     inputs:
       - my_transform_id
-    path: /tmp/vector-%Y-%m-%d.log
+    path: {{ path_file }}
 ```
 
-Создаем файл с переменными vars.yml
+Создаем файл с переменными vars.yml, куда вносим переменные для плейбука site.yml и для шаблона vector.j2
 ```
 mkdir group_vars/vector
 cd group_vars/vector
@@ -57,6 +57,9 @@ nano vars.yml
 vector_version: "0.35.0"
 vector_os_arch: "x86_64"
 vector_workdir: "/root/ansible/08-ansible-02-playbook"
+source_file: /var/log/mongodb/mongod.log
+version_number: "1" 
+path_file:  /tmp/vector-%Y-%m-%d.log
 ```
 
 3. При создании tasks рекомендую использовать модули: `get_url`, `template`, `unarchive`, `file`.
