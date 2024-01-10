@@ -77,6 +77,11 @@ ansible-playbook -i inventory/prod.yml site.yml --check
 ```
  ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-02-playbook/screenshots/ansible2.png)
 
+Уточняем в переменной актуальную версию пакета
+```
+nano group_vars/clickhouse/vars.yml
+clickhouse_version: "23.9.6.20"
+```
 
 7. Запустите playbook на `prod.yml` окружении с флагом `--diff`. Убедитесь, что изменения на системе произведены.
 8. Повторно запустите playbook с флагом `--diff` и убедитесь, что playbook идемпотентен.
