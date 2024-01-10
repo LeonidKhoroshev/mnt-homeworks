@@ -48,6 +48,16 @@ sinks:
     path: /tmp/vector-%Y-%m-%d.log
 ```
 
+Создаем файл с переменными vars.yml
+```
+mkdir group_vars/vector
+cd group_vars/vector
+nano vars.yml
+
+vector_version: "0.35.0"
+vector_os_arch: "x86_64"
+vector_workdir: "/root/ansible/08-ansible-02-playbook"
+```
 
 3. При создании tasks рекомендую использовать модули: `get_url`, `template`, `unarchive`, `file`.
 4. Tasks должны: скачать дистрибутив нужной версии, выполнить распаковку в выбранную директорию, установить vector.
