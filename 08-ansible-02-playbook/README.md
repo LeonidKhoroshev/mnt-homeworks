@@ -19,6 +19,36 @@ clickhouse:
       ansible_host: localhost
 ```
 2. Допишите playbook: нужно сделать ещё один play, который устанавливает и настраивает [vector](https://vector.dev). Конфигурация vector должна деплоиться через template файл jinja2. От вас не требуется использовать все возможности шаблонизатора, просто вставьте стандартный конфиг в template файл. Информация по шаблонам по [ссылке](https://www.dmosk.ru/instruktions.php?object=ansible-nginx-install). не забудьте сделать handler на перезапуск vector в случае изменения конфигурации!
+
+Создаем файл конфигурации vector.yml из трех блоков [sourses](https://vector.dev/docs/reference/configuration/sources/), [transforms](https://vector.dev/docs/reference/configuration/transforms/) и [sinks](https://vector.dev/docs/reference/configuration/sinks/)
+
+```
+mkdir template
+cd template
+nano vector.yml
+
+sources:
+  my_source_id:
+    type: file
+    include:
+      - /var/log/mongodb/mongod.log
+
+transforms:
+  my_transform_id:
+    type: lua
+    inputs:
+      - my_source_id
+    version: "1"
+
+sinks:
+  my_sink_id:
+    type: file
+    inputs:
+      - my_transform_id
+    path: /tmp/vector-%Y-%m-%d.log
+```
+
+
 3. При создании tasks рекомендую использовать модули: `get_url`, `template`, `unarchive`, `file`.
 4. Tasks должны: скачать дистрибутив нужной версии, выполнить распаковку в выбранную директорию, установить vector.
 5. Запустите `ansible-lint site.yml` и исправьте ошибки, если они есть.
