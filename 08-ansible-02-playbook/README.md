@@ -20,7 +20,7 @@ clickhouse:
 ```
 2. Допишите playbook: нужно сделать ещё один play, который устанавливает и настраивает [vector](https://vector.dev). Конфигурация vector должна деплоиться через template файл jinja2. От вас не требуется использовать все возможности шаблонизатора, просто вставьте стандартный конфиг в template файл. Информация по шаблонам по [ссылке](https://www.dmosk.ru/instruktions.php?object=ansible-nginx-install). не забудьте сделать handler на перезапуск vector в случае изменения конфигурации!
 
-Создаем файл конфигурации vector.yml из трех блоков [sourses](https://vector.dev/docs/reference/configuration/sources/), [transforms](https://vector.dev/docs/reference/configuration/transforms/) и [sinks](https://vector.dev/docs/reference/configuration/sinks/)
+Создаем файл конфигурации vector.yml из трех блоков [sourses](https://vector.dev/docs/reference/configuration/sources/), [transforms](https://vector.dev/docs/reference/configuration/transforms/) и [sinks](https://vector.dev/docs/reference/configuration/sinks/). В качестве примера взяты блоки, упомянутые в лекции.
 
 ```
 mkdir template
