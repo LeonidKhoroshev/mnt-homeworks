@@ -57,9 +57,9 @@ nano vars.yml
 vector_version: "0.35.0"
 vector_os_arch: "x86_64"
 vector_workdir: "/root/ansible/08-ansible-02-playbook"
-source_file: /var/log/mongodb/mongod.log
+source_file: "/var/log/mongodb/mongod.log"
 version_number: "1" 
-path_file:  /tmp/vector-%Y-%m-%d.log
+path_file:  "/tmp/vector-%Y-%m-%d.log"
 ```
 
 3. При создании tasks рекомендую использовать модули: `get_url`, `template`, `unarchive`, `file`.
