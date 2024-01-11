@@ -48,10 +48,8 @@ sinks:
     path: {{ path_file }}
 ```
 
-Создаем файл с переменными vars.yml, куда вносим переменные для плейбука site.yml и для шаблона vector.j2
+Дополняем файл с переменными vars.yml, куда вносим переменные для плейбука site.yml и для шаблона vector.j2
 ```
-mkdir group_vars/vector
-cd group_vars/vector
 nano vars.yml
 
 vector_version: "0.35.0"
@@ -82,8 +80,23 @@ ansible-playbook -i inventory/prod.yml site.yml --check
 nano group_vars/clickhouse/vars.yml
 clickhouse_version: "23.8.9.54"
 ```
+Также меняем в плейбуке ссылку на корректную (вместо директории stable указываем lts, так как в первой отсутствуют дистрибутивы clickhouse server)
+```
+url: https://packages.clickhouse.com/rpm/lts/{{ item }}-{{ clickhouse_version }}.x86_64.rpm
+```
+
+Запускаем плейбук повторно
+```
+ansible-playbook -i inventory/prod.yml site.yml --check
+```
+ ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-02-playbook/screenshots/ansible3.png)
 
 7. Запустите playbook на `prod.yml` окружении с флагом `--diff`. Убедитесь, что изменения на системе произведены.
+```
+ansible-playbook -i inventory/prod.yml site.yml --diff
+```
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-02-playbook/screenshots/ansible4.png) 
+  
 8. Повторно запустите playbook с флагом `--diff` и убедитесь, что playbook идемпотентен.
 9. Подготовьте README.md-файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги. Пример качественной документации ansible playbook по [ссылке](https://github.com/opensearch-project/ansible-playbook). Так же приложите скриншоты выполнения заданий №5-8
 10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-02-playbook` на фиксирующий коммит, в ответ предоставьте ссылку на него.
