@@ -80,7 +80,7 @@ ansible-playbook -i inventory/prod.yml site.yml --check
 Уточняем в переменной актуальную версию пакета
 ```
 nano group_vars/clickhouse/vars.yml
-clickhouse_version: "23.9.6.20"
+clickhouse_version: "23.8.9.54"
 ```
 
 7. Запустите playbook на `prod.yml` окружении с флагом `--diff`. Убедитесь, что изменения на системе произведены.
