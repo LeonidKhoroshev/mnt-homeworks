@@ -1,0 +1,19 @@
+sources:
+  my_source_id:
+    type: file
+    include:
+      - {{ sourse_file }}
+
+transforms:
+  my_transform_id:
+    type: lua
+    inputs:
+      - my_source_id: 
+    version: {{ version_number }}
+
+sinks:
+  my_sink_id:
+    type: file
+    inputs:
+      - my_transform_id
+    path: {{ path_file }}

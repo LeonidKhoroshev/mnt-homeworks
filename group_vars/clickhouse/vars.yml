@@ -1,0 +1,13 @@
+---
+clickhouse_version: "23.8.9.54"
+clickhouse_packages:
+  - clickhouse-client
+  - clickhouse-server
+  - clickhouse-common-static
+
+vector_version: "0.35.0"
+vector_os_arch: "x86_64"
+vector_workdir: "/root/ansible/08-ansible-02-playbook"
+sourse_file: "/var/log/mongodb/mongod.log"
+version_number: "1" 
+path_file:  "/tmp/vector-%Y-%m-%d.log"
