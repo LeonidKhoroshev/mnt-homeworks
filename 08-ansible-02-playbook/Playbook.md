@@ -103,6 +103,7 @@ sinks:
 - `Get clickhouse distrib` - загрузка пакетов Clickhouse на управляемые хосты (`rescue`: Get clickhouse distrib` - загрузка пакетов Clickhouse в случае сбоя в предыдущей таске);
 - `Install clickhouse packages` - установка пакетов Clickhouse (в нашем случае установка rpm пакетов clickhouse-client, clickhouse-server, clickhouse-common-static);
 -  `Create database` - создание базы данных Clickhouse.
+
 Хэндлер:
  - `Start clickhouse service` - запуск сервиса Clickhouse. 
 
