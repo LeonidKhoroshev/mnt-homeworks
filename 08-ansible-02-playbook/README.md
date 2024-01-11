@@ -20,6 +20,66 @@ clickhouse:
 ```
 2. Допишите playbook: нужно сделать ещё один play, который устанавливает и настраивает [vector](https://vector.dev). Конфигурация vector должна деплоиться через template файл jinja2. От вас не требуется использовать все возможности шаблонизатора, просто вставьте стандартный конфиг в template файл. Информация по шаблонам по [ссылке](https://www.dmosk.ru/instruktions.php?object=ansible-nginx-install). не забудьте сделать handler на перезапуск vector в случае изменения конфигурации!
 
+Дополняем существующий плейбук:
+```
+nano site.yml
+
+- name: Install Vector
+  hosts: clickhouse
+  handlers:
+    - name: Start Vector
+      become: true
+      ansible.builtin.systemd:
+        daemon_reload: true
+        enabled: false
+        name: vector.service
+        state: restarted
+
+  tasks:
+    - block:
+        - name: Get Vector distrib
+          ansible.builtin.get_url:
+            url: "https://packages.timber.io/vector/{{ vector_version }}/vector-{{ vector_version }}-{{ vector_os_arch }}-unknown-linux-gnu.tar.gz"
+            dest: "{{ vector_workdir }}/vector-{{ vector_version }}-{{ vector_os_arch }}-unknown-linux-gnu.tar.gz"
+            mode: "0755"
+
+        - name: Unpack Vector
+          ansible.builtin.unarchive:
+            remote_src: true
+            src: "{{ vector_workdir }}/vector-{{ vector_version }}-{{ vector_os_arch }}-unknown-linux-gnu.tar.gz"
+            dest: "{{ vector_workdir }}"
+
+        - name: Install Vector
+          become: true
+          ansible.builtin.copy:
+            remote_src: true
+            src: "{{ vector_workdir }}/vector-{{ vector_os_arch }}-unknown-linux-gnu/bin/vector"
+            dest: "/usr/bin/"
+            mode: "0755"
+            owner: root
+            group: root
+
+        - name: Create Vector config
+          become: true
+          ansible.builtin.template:
+            remote_src: true
+            src: "{{ vector_workdir }}/playbook/template/vector.j2"
+            dest: "{{ vector_workdir }}"
+            mode: "0755"
+            owner: root
+            group: root
+          notify: Start Vector
+
+        - name: Create Vector data_dir
+          become: true
+          ansible.builtin.file:
+            path: /var/lib/vector
+            state: directory
+            mode: "0755"
+            owner: root
+            group: root
+```
+
 Создаем файл конфигурации vector.yml из трех блоков [sourses](https://vector.dev/docs/reference/configuration/sources/), [transforms](https://vector.dev/docs/reference/configuration/transforms/) и [sinks](https://vector.dev/docs/reference/configuration/sinks/). В качестве примера взяты блоки, упомянутые в лекции.
 
 ```
@@ -96,15 +156,18 @@ ansible-playbook -i inventory/prod.yml site.yml --check
 ansible-playbook -i inventory/prod.yml site.yml --diff
 ```
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-02-playbook/screenshots/ansible4.png) 
-  
+
+Проверяем, установлены ли на хосте clickhouse и vector
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-02-playbook/screenshots/ansible6.png) 
+
 8. Повторно запустите playbook с флагом `--diff` и убедитесь, что playbook идемпотентен.
+```
+ansible-playbook -i inventory/prod.yml site.yml --diff
+```
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-02-playbook/screenshots/ansible5.png) 
+
 9. Подготовьте README.md-файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги. Пример качественной документации ansible playbook по [ссылке](https://github.com/opensearch-project/ansible-playbook). Так же приложите скриншоты выполнения заданий №5-8
 10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-02-playbook` на фиксирующий коммит, в ответ предоставьте ссылку на него.
 
 ---
 
-### Как оформить решение задания
-
-Выполненное домашнее задание пришлите в виде ссылки на .md-файл в вашем репозитории.
-
----
