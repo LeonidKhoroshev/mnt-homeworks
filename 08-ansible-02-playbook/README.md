@@ -172,5 +172,7 @@ ansible-playbook -i inventory/prod.yml site.yml --diff
 
 10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-02-playbook` на фиксирующий коммит, в ответ предоставьте ссылку на него.
 
+[Ansible-playbook](https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-02)
+
 ---
 
