@@ -95,7 +95,7 @@ sinks:
 - sinks - отвечает за представление обработанных данных, в нашем шаблоне выбран файл, как самый простой, с остальными форматами вывода можно также ознакомится на сайте разработчика в соответствующем [разделе](https://vector.dev/docs/reference/configuration/sinks/).
 
 
-### 4. Структура Ansible-playbook:
+### 5. Структура Ansible-playbook:
 
 **Установка Clickhouse на хосты, указанные в inventory**
 
@@ -117,4 +117,9 @@ sinks:
 - `Create Vector data_dir` - создание директории для хранения данных Vector.
 
 Хэндлер:
-- `Start Vector` - запуск сервиса Vector.  
+- `Start Vector` - запуск сервиса Vector.
+
+### Запуск Ansible-playbook:
+```
+ansible-playbook -i inventory/prod.yml site.yml
+```
