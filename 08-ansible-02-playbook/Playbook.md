@@ -17,7 +17,7 @@
 **Системные требования**:
  - RAM - не менее 2 Гб;
  - ROM - не менее 450 Мб;
- - ОС - Linux-based системы.
+ - ОС - Linux-based системы (rpm семейство).
 
 ### 3. Настройка параметров, необходимых для запуска playbook:
 
@@ -64,4 +64,56 @@ path_file:  "/tmp/vector-%Y-%m-%d.log"
 
 ### 4. Настройка комбайна "Vector" 
 
-Настройка vector на управляемых хостах осуществляется с помрощью конфигурационного файла, автоматически генерируемого из шаблона /templates/vector.j2
+Настройка vector на управляемых хостах осуществляется с помрощью конфигурационного файла, автоматически генерируемого из шаблона /templates/vector.j2:
+```
+sources:
+  my_source_id:
+    type: file
+    include:
+      - {{ sourse_file }}
+
+transforms:
+  my_transform_id:
+    type: lua
+    inputs:
+      - my_source_id:
+    version: {{ version_number }}
+
+sinks:
+  my_sink_id:
+    type: file
+    inputs:
+      - my_transform_id
+    path: {{ path_file }}
+```
+
+Используемые в шаблоне переменные указаны в vars.yml (п.3 настоящей инструкции).
+
+Конфигурация vector основывается на трех разделах:
+- sources - источник данных для обработки, в нашем случае выбран файл с логами, но vector поллерживает множество других [источников](https://vector.dev/components/);
+- transforms - формат обработки данных, в нашей конгфигурации выбрана lua, но доступно множество других [компоненов](https://vector.dev/docs/reference/configuration/transforms/);
+- sinks - отвечает за представление обработанных данных, в нашем шаблоне выбран файл, как самый простой, с остальными форматами вывода можно также ознакомится на сайте разработчика в соответствующем [разделе](https://vector.dev/docs/reference/configuration/sinks/).
+
+
+### 4. Структура Ansible-playbook:
+
+**Установка Clickhouse на хосты, указанные в inventory**
+
+Таски:
+- `Get clickhouse distrib` - загрузка пакетов Clickhouse на управляемые хосты (`rescue`: Get clickhouse distrib` - загрузка пакетов Clickhouse в случае сбоя в предыдущей таске);
+- `Install clickhouse packages` - установка пакетов Clickhouse (в нашем случае установка rpm пакетов clickhouse-client, clickhouse-server, clickhouse-common-static);
+-  `Create database` - создание базы данных Clickhouse.
+Хэндлер:
+ - `Start clickhouse service` - запуск сервиса Clickhouse. 
+
+**Установка Vector на хосты, указанные в inventory**:
+
+Таски:
+- `Get Vector distrib` - загрузка архива  Vector на управляемые хосты;
+- `Unpack Vector` - распаковка  Vector в директорию, заданную через переменную `vector_workdir`;
+- `Install Vector` - установка Vector;
+- `Create Vector config` - создание конфигурационного файла на базе шаблона `vector.j2`, описанного в п.4 настоящей инструкции;
+- `Create Vector data_dir` - создание директории для хранения данных Vector.
+
+Хэндлер:
+- `Start Vector` - запуск сервиса Vector.  
