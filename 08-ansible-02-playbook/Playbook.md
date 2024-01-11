@@ -124,7 +124,9 @@ sinks:
 Хэндлер:
 - `Start Vector` - запуск сервиса Vector.
 
-### Запуск Ansible-playbook:
+---
+
+### 6. Запуск Ansible-playbook:
 ```
 ansible-playbook -i inventory/prod.yml site.yml
 ```
