@@ -198,6 +198,9 @@ terraform plan
 terraform apply
 ```
 
+Проверяем созданные вм
+
+Проверяем файл inventory
 
 2. Репозиторий LightHouse находится [по ссылке](https://github.com/VKCOM/lighthouse).
 
