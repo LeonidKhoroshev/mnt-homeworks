@@ -199,7 +199,7 @@ terraform apply
 ```
 
 Проверяем созданные вм
-
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-03-yandex/screenshots/ansible1.png)
 Проверяем файл inventory
 
 2. Репозиторий LightHouse находится [по ссылке](https://github.com/VKCOM/lighthouse).
