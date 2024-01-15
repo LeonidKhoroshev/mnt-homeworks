@@ -3,6 +3,202 @@
 ## Подготовка к выполнению
 
 1. Подготовьте в Yandex Cloud три хоста: для `clickhouse`, для `vector` и для `lighthouse`.
+
+Инфраструктуру для выполнения домашнего задания поднимаем через terraform, для чего подготовим файлы для создания сети, подсети и 3-х ВМ с именами `clickhouse`, `vector` и `lighthouse`.
+```
+nano main.tf
+
+esource "yandex_vpc_network" "develop" {
+  name = var.vpc_name
+}
+resource "yandex_vpc_subnet" "develop" {
+  name           = var.vpc_name
+  zone           = var.default_zone
+  network_id     = yandex_vpc_network.develop.id
+  v4_cidr_blocks = var.default_cidr
+}
+
+resource "yandex_compute_instance" "vm" {
+  for_each             = { for vm in var.each_vm: index(var.each_vm,vm)=> vm }
+  name                 = each.value.name
+  platform_id          = var.platform_id
+
+resources {
+    cores              = each.value.cpu
+    memory             = each.value.ram
+    core_fraction      = each.value.core_fraction
+  }
+
+scheduling_policy {
+    preemptible        = each.value.preemptible
+  }
+
+network_interface {
+    subnet_id          = yandex_vpc_subnet.develop.id
+    nat                = true
+  }
+
+  boot_disk {
+    initialize_params {
+      image_id         = var.image_id
+      size             = each.value.disk
+    }
+  }
+   metadata = var.metadata
+}
+
+```
+Для автоматического создания inventory файла подготовим соответствующий шаблон
+```
+nano inventory/hosts.tftpl
+
+[webservers]
+
+%{~ for i in webservers ~}
+
+${i["name"]} ansible_host=${i["network_interface"][0]["nat_ip_address"]}
+
+%{~ endfor ~}
+
+```
+
+Также создадим файл, использующий данный шаблон:
+```
+nano ansible.tf
+
+resource "local_file" "hosts_cfg" {
+  filename = "./inventory/hosts.cfg"
+  content = templatefile("./inventory/hosts.tftpl", { webservers = yandex_compute_instance.vm })
+}
+
+resource "null_resource" "web_hosts_provision" {
+  depends_on = [yandex_compute_instance.vm, local_file.hosts_cfg]
+  provisioner "local-exec" {
+        command = "sleep 60"
+  }
+}
+```
+
+Все необходимые переменные объявляем в variables.tf
+```
+nano variables.tf
+
+###cloud vars
+variable "token" {
+  type        = string
+  description = "OAuth-token; https://cloud.yandex.ru/docs/iam/concepts/authorization/oauth-token"
+}
+
+variable "cloud_id" {
+  type        = string
+  description = "https://cloud.yandex.ru/docs/resource-manager/operations/cloud/get-id"
+}
+
+variable "folder_id" {
+  type        = string
+  description = "https://cloud.yandex.ru/docs/resource-manager/operations/folder/get-id"
+}
+
+variable "default_zone" {
+  type        = string
+  default     = "ru-central1-a"
+  description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
+}
+variable "default_cidr" {
+  type        = list(string)
+  default     = ["10.0.1.0/24"]
+  description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
+}
+
+variable "vpc_name" {
+  type        = string
+  default     = "develop"
+  description = "VPC network&subnet name"
+}
+
+###vm vars
+
+variable "platform_id" {
+  type        = string
+  default     = "standard-v3"
+}
+
+variable "image_id" {
+  type        = string
+  default     = "fd8gvgtf1t3sbtt4opo6"
+}
+variable "metadata" {
+  type        = map
+  default     = {serial_port_enable = "1",ssh_keys = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCgT8Ny1LD7hTjTan3NOKzgpZ9FEJC7+G7Zfm+bs+9bXZhQ/B6gwjJh0VI6RsVo2wZKsosIc2DZogA+NlWbefQfiC5RKtt/iZ$
+}
+
+variable "security_group_example" {
+  type        = string
+  default     = "enpst7elmqdtqj1j5e16"
+}
+
+variable "each_vm" {
+  type = list(object({  name=string, cpu=number, ram=number, disk=number,preemptible=bool,core_fraction=number }))
+  default = [{
+    name="clickhouse"
+    cpu=2
+    ram=4
+    disk=10
+    preemptible=true
+    core_fraction=20
+    },
+    {
+    name="vector"
+    cpu=2
+    ram=4
+    disk=10
+    preemptible=true
+    core_fraction=20
+    },
+    {
+    name="lighthouse"
+    cpu=2
+    ram=4
+    disk=10
+    preemptible=true
+    core_fraction=20
+    }]
+  }
+
+#inventory vars
+
+variable "public_key" {
+  type        = string
+  default     = "ssh-rsa AAAAB3NzaC1yc.........."
+}
+```
+
+Из предыдущих домашних занятий по теме terraform скопируем файл providers.tf
+```
+terraform {
+  required_providers {
+    yandex = {
+      source = "yandex-cloud/yandex"
+    }
+  }
+  required_version = ">=0.13"
+}
+
+provider "yandex" {
+  token     = var.token
+  cloud_id  = var.cloud_id
+  folder_id = var.folder_id
+  zone      = var.default_zone
+}
+```
+Поднимаем инфраструктуру
+```
+terraform init
+terraform plan
+terraform apply
+```
+
+
 2. Репозиторий LightHouse находится [по ссылке](https://github.com/VKCOM/lighthouse).
 
 ## Основная часть
