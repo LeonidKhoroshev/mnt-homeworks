@@ -4,7 +4,7 @@
 
 1. Подготовьте в Yandex Cloud три хоста: для `clickhouse`, для `vector` и для `lighthouse`.
 
-Инфраструктуру для выполнения домашнего задания поднимаем через terraform, для чего подготовим файлы для создания сети, подсети и 3-х ВМ с именами `clickhouse`, `vector` и `lighthouse`.
+Инфраструктуру для выполнения домашнего задания поднимаем через terraform, для чего подготовим файлы для создания сети, подсети и 3-х ВМ с именами `clickhouse`, `vector` и `lighthouse`. В параметр metadata через cloud-init передадим информацию о создаваемом пользователе и ssh ключах. Через ресурс local_file создаем inventory файл через соответствующий шаблон.
 ```
 nano main.tf
 
@@ -44,11 +44,18 @@ network_interface {
       size             = each.value.disk
     }
   }
-   metadata = var.metadata
+   metadata = {
+    user-data = "${file("./meta.yml")}"
+  }
+
 }
 
+resource "local_file" "hosts_cfg" {
+  filename = "./inventory/hosts.cfg"
+  content = templatefile("./inventory/hosts.tftpl", { webservers = yandex_compute_instance.vm })
+}
 ```
-Для автоматического создания inventory файла подготовим соответствующий шаблон
+Для автоматического создания inventory файла подготовим соответствующий шаблон, который помимо hosts.cfg c указанием названий и ip адресов создаваемых хостов, также устанавливает на них python для дальнейшей работы.
 ```
 nano inventory/hosts.tftpl
 
@@ -60,23 +67,22 @@ ${i["name"]} ansible_host=${i["network_interface"][0]["nat_ip_address"]}
 
 %{~ endfor ~}
 
+[webservers:vars]
+ansible_python=/usr/bin/python
 ```
 
-Также создадим файл, использующий данный шаблон:
+Также создадим файл meta.yml, описывающий параметры метадаты для наших хостов:
 ```
-nano ansible.tf
+nano meta.yml
 
-resource "local_file" "hosts_cfg" {
-  filename = "./inventory/hosts.cfg"
-  content = templatefile("./inventory/hosts.tftpl", { webservers = yandex_compute_instance.vm })
-}
-
-resource "null_resource" "web_hosts_provision" {
-  depends_on = [yandex_compute_instance.vm, local_file.hosts_cfg]
-  provisioner "local-exec" {
-        command = "sleep 60"
-  }
-}
+#cloud-config
+users:
+  - name: leo
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3NzaC........
 ```
 
 Все необходимые переменные объявляем в variables.tf
@@ -202,6 +208,13 @@ terraform apply
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-03-yandex/screenshots/ansible1.png)
 Проверяем файл inventory
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-03-yandex/screenshots/ansible2.png)
+
+Проверяем доступность созданных хостов
+```
+ansible all -i inventory/hosts.cfg -m ping -u leo
+```
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-03-yandex/screenshots/ansible3.png)
+
 2. Репозиторий LightHouse находится [по ссылке](https://github.com/VKCOM/lighthouse).
 
 ## Основная часть
