@@ -55,7 +55,7 @@ resource "local_file" "hosts_cfg" {
   content = templatefile("./inventory/hosts.tftpl", { webservers = yandex_compute_instance.vm })
 }
 ```
-Для автоматического создания inventory файла подготовим соответствующий шаблон, который помимо hosts.cfg c указанием названий и ip адресов создаваемых хостов, также устанавливает на них python для дальнейшей работы.
+Для автоматического создания inventory файла подготовим соответствующий шаблон.
 ```
 nano inventory/hosts.tftpl
 
