@@ -222,13 +222,183 @@ ansible all -i inventory/hosts.cfg -m ping -u leo
 1. Допишите playbook: нужно сделать ещё один play, который устанавливает и настраивает LightHouse.
 2. При создании tasks рекомендую использовать модули: `get_url`, `template`, `yum`, `apt`.
 3. Tasks должны: скачать статику LightHouse, установить Nginx или любой другой веб-сервер, настроить его конфиг для открытия LightHouse, запустить веб-сервер.
-4. Подготовьте свой inventory-файл `prod.yml`.
-5. Запустите `ansible-lint site.yml` и исправьте ошибки, если они есть.
-6. Попробуйте запустить playbook на этом окружении с флагом `--check`.
-7. Запустите playbook на `prod.yml` окружении с флагом `--diff`. Убедитесь, что изменения на системе произведены.
-8. Повторно запустите playbook с флагом `--diff` и убедитесь, что playbook идемпотентен.
-9. Подготовьте README.md-файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги.
-10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-03-yandex` на фиксирующий коммит, в ответ предоставьте ссылку на него.
+Разделим playbook на задачи по установке и настройке:
+Nginx
+```
+- name: Install Nginx
+  hosts: webservers
+  remote_user: leo
+  become: true
+  handlers:
+    - name: Start nginx
+      remote_user: leo
+      become: true
+      ansible.builtin.command: nginx
+    - name: Reload nginx
+      become: true
+      ansible.builtin.command: nginx -s reload
+  tasks:
+    - name: NGINX | Install eper-release
+      remote_user: leo
+      become: true
+      ansible.builtin.yum:
+        name: epel-release
+        state: present
+    - name: NGINX | Install Nginx
+      become: true
+      ansible.builtin.yum:
+        name: nginx
+        state: present
+      notify: Start nginx
+    - name: NGINX | Create general config
+      become: true
+      remote_user: leo
+      ansible.builtin.template:
+        src: template/nginx.j2
+        dest: /etc/nginx/nginx.conf
+        mode: "0755"
+      notify: Reload nginx
+```
+Lighthouse
+```
+- name: Install Lighthouse
+  hosts: lighthouse
+  remote_user: leo
+  become: true
+  handlers:
+    - name: Reload nginx
+      become: true
+      remote_user: leo
+      ansible.builtin.command: nginx -s reload
+  pre_tasks:
+    - name: Lighthouse | install git
+      become: true
+      ansible.builtin.yum:
+        name: git
+        state: present
+  tasks:
+    - name: Lighthouse | Copy from git
+      become: true
+      ansible.builtin.git:
+        repo: "https://github.com/VKCOM/lighthouse.git"
+        version: master
+        dest: "home/leo/lighthouse"
+    - name: Lighthouse | Create lighthouse config
+      become: true
+      ansible.builtin.template:
+        src: template/lighthouse.j2
+        dest: /etc/nginx/conf.d/default.conf
+        mode: "0755"
+      notify: Reload nginx
+```
+Clickhouse
+```
+- name: Install Clickhouse
+  hosts: clickhouse
+  remote_user: leo
+  become: true
+  handlers:
+    - name: Start clickhouse service
+      become: true
+      ansible.builtin.service:
+        name: clickhouse-server
+        state: restarted
+  tasks:
+    - block:
+        - name: Get clickhouse-common-static distrib
+          ansible.builtin.get_url:
+            url: https://packages.clickhouse.com/rpm/lts/clickhouse-common-static-23.8.9.54.x86_64.rpm
+            dest: /home/leo/clickhouse-common-static-23.8.9.54.x86_64.rpm
+            mode: "0755"
+        - name: Get clickhouse-server distrib
+          ansible.builtin.get_url:
+            url: https://packages.clickhouse.com/rpm/lts/clickhouse-server-23.8.9.54.x86_64.rpm
+            dest: /home/leo/clickhouse-server-23.8.9.54.x86_64.rpm
+            mode: "0755"
+        - name: Get clickhouse-client distrib
+          ansible.builtin.get_url:
+            url: https://packages.clickhouse.com/rpm/lts/clickhouse-client-23.8.9.54.x86_64.rpm
+            dest: /home/leo/clickhouse-client-23.8.9.54.x86_64.rpm
+            mode: "0755"
+    - name: Install clickhouse packages
+      become: true
+      ansible.builtin.yum:
+        name:
+          - clickhouse-common-static-23.8.9.54.x86_64.rpm
+          - clickhouse-client-23.8.9.54.x86_64.rpm
+          - clickhouse-server-23.8.9.54.x86_64.rpm
+      notify: Start clickhouse service
+    - name: Flush handlers
+      meta: flush_handlers
+    - name: Create database
+      ansible.builtin.command: "clickhouse-client -q 'create database logs;'"
+      register: create_db
+      failed_when: create_db.rc != 0 and create_db.rc !=82
+      changed_when: create_db.rc == 0
+```
+Vector
+```
+
+```
+- name: Install Vector
+  hosts: vector
+  remote_user: leo
+  handlers:
+    - name: Start Vector
+      become: true
+      ansible.builtin.systemd:
+              daemon_reload: true
+        enabled: false
+        name: vector.service
+        state: restarted
+
+  tasks:
+    - block:
+        - name: Get Vector distrib
+          ansible.builtin.get_url:
+            url: https://packages.timber.io/vector/0.35.0/vector-0.35.0-1.x86_64.rpm
+            dest: /home/leo/vector-0.35.0-1.x86_64.rpm
+            mode: "0755"
+        - name: Install Vector
+          become: true
+          remote_user: leo
+          ansible.builtin.copy:
+            remote_src: true
+            src: "/home/leo/"
+            dest: "/usr/bin/"
+            mode: "0755"
+            owner: leo
+            group: root
+
+        - name: Vector | Template config
+          become: true
+          ansible.builtin.template:
+            src: template/vector.yml.j2
+            dest: /etc/vector/vector.yml
+            mode: "0755"
+            owner: "leo"
+            group: "root"
+            validate: vector validate --no-environment --config-yaml %s
+        - name: Vector | Create systemd unit
+          become: true
+          ansible.builtin.template:
+            src: template/vector.service.j2
+            dest: /etc/systemd/system/vector.service
+            mode: "0755"
+            owner: "leo"
+            group: "root"
+```
+5. Подготовьте свой inventory-файл.
+
+Файл формируется автоматически из шаблона, приведенного выше в hosts.cfg.
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-03-yandex/screenshots/ansible3.png)
+
+6. Запустите `ansible-lint site.yml` и исправьте ошибки, если они есть.
+7. Попробуйте запустить playbook на этом окружении с флагом `--check`.
+8. Запустите playbook на `prod.yml` окружении с флагом `--diff`. Убедитесь, что изменения на системе произведены.
+9. Повторно запустите playbook с флагом `--diff` и убедитесь, что playbook идемпотентен.
+10. Подготовьте README.md-файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги.
+11. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-03-yandex` на фиксирующий коммит, в ответ предоставьте ссылку на него.
 
 ---
 
