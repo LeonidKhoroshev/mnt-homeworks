@@ -390,10 +390,21 @@ Vector
 
 Файл формируется автоматически из шаблона, приведенного выше в hosts.cfg.
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-03-yandex/screenshots/ansible4.png)
+6. Запустите `ansible-lint` и исправьте ошибки, если они есть.
+```
+ansible-lint playbook.yml
+```
+Ошибок не обнаружено, кроме пары лишних пробелов.
 
-6. Запустите `ansible-lint site.yml` и исправьте ошибки, если они есть.
 7. Попробуйте запустить playbook на этом окружении с флагом `--check`.
+```
+ansible-playbook -i inventory/hosts.cfg playbook.yml --check
+```
+  
 8. Запустите playbook на `prod.yml` окружении с флагом `--diff`. Убедитесь, что изменения на системе произведены.
+```
+ansible-playbook -i inventory/hosts.cfg playbook.yml --diff
+```
 9. Повторно запустите playbook с флагом `--diff` и убедитесь, что playbook идемпотентен.
 10. Подготовьте README.md-файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги.
 11. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-03-yandex` на фиксирующий коммит, в ответ предоставьте ссылку на него.
