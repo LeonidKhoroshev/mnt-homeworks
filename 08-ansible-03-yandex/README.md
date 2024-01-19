@@ -338,8 +338,6 @@ Clickhouse
 ```
 Vector
 ```
-
-```
 - name: Install Vector
   hosts: vector
   remote_user: leo
