@@ -389,7 +389,7 @@ Vector
 5. Подготовьте свой inventory-файл.
 
 Файл формируется автоматически из шаблона, приведенного выше в hosts.cfg.
-![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-03-yandex/screenshots/ansible3.png)
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-03-yandex/screenshots/ansible4.png)
 
 6. Запустите `ansible-lint site.yml` и исправьте ошибки, если они есть.
 7. Попробуйте запустить playbook на этом окружении с флагом `--check`.
