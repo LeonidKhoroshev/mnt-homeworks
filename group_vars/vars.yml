@@ -1,0 +1,39 @@
+---
+clickhouse_version: "23.8.9.54"
+
+clickhouse:
+  - clickhouse-client
+  - clickhouse-server
+  - clickhouse-common-static
+
+vector_version: "0.35.0"
+vector_os_arch: "x86_64"
+vector_workdir: "/root/netology/08-ansible-03-yandex"
+version_number: "1" 
+path_file:  "/tmp/vector-%Y-%m-%d.log"
+
+lighthouse_vcs: https://github.com/VKCOM/lighthouse.git
+lighthouse_location_dir: /home/leo/lighthouse
+lighthouse_access_log_name: lighthouse_access
+nginx_user_name: leo
+
+nginx_user_name: leo
+vector_config:
+  sources:
+      our_log:
+        ignore_older_secs: 600
+        include:
+          - /var/log/nginx/access.log
+        read_from: beginning
+        type: file
+  sinks:
+    to_clickhouse:
+      type: clickhouse
+      inputs:
+        - our_log
+      database: logs
+      endpoint: http://{{ hostvars['clickhouse-01'].ansible_default_ipv4.address }}:8123
+      table: access_logs
+      compression: gzip
+      healthcheck: false
+      skip_unknown_fields: true
