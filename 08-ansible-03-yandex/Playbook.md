@@ -1,6 +1,8 @@
-## Ansible-playbook по установке Clickhouse и Vector
+## Ansible-playbook по установке Clickhouse, Vector и Lighthouse
 
 ### 1. Устанавливаемое программное обеспечание:
+
+**Nginx** - веб сервер, устанавливается на все хосты для обеспечения связи между ними.
 
 **ClickHouse** — колоночная аналитическая СУБД , позволяющая выполнять аналитические запросы в режиме реального времени на структурированных больших данных, использует собственный диалект SQL близкий к стандартному.
 
@@ -10,86 +12,138 @@
 
 ### 2. Требуемые условия для запуска Ansible-playbook:
 
+**Terraform** - версия 1.5.
+
 **Ansible** - версия не ниже 2.10.
 
 **Phyton** - не ниже версии 3.6.
 
 **Системные требования**:
- - RAM - не менее 2 Гб;
+ - RAM - не менее 4 Гб (l для хоста c Lighthouse длпустимо 2 Гб);
  - ROM - не менее 450 Мб;
  - ОС - Linux-based системы (rpm семейство).
 
 ---
 
-### 3. Настройка параметров, необходимых для запуска playbook:
+### 3. Создание инфраструктуры Yandex Cloud
 
-**inventory** - /inventory/prod.yml:
+Данный раздел не относится непосредственно к нашему playbook, так как хосты можно создать и подготовить вручную, но в моем задании применяется terraform для автоматического создания 3-х виртуальных машин - Clickhouse, Vector и Lighthouse. На всех хостах предполагается настройка Nginx и на каждом хосте ПО - соответствующее названию хостов: Clickhouse, Vector и Lighthouse.
+Конфигурационный файл terraform
 ```
-clickhouse:
-  hosts:
-    clickhouse-01:
-      ansible_connection: local
+resource "yandex_vpc_network" "develop" {
+  name = var.vpc_name
+}
+resource "yandex_vpc_subnet" "develop" {
+  name           = var.vpc_name
+  zone           = var.default_zone
+  network_id     = yandex_vpc_network.develop.id
+  v4_cidr_blocks = var.default_cidr
+}
+
+resource "yandex_compute_instance" "vm" {
+  for_each             = { for vm in var.each_vm: index(var.each_vm,vm)=> vm }
+  name                 = each.value.name
+  platform_id          = var.platform_id
+
+resources {
+    cores              = each.value.cpu
+    memory             = each.value.ram
+    core_fraction      = each.value.core_fraction
+  }
+
+scheduling_policy {
+    preemptible        = each.value.preemptible
+  }
+
+network_interface {
+    subnet_id          = yandex_vpc_subnet.develop.id
+    nat                = true
+  }
+
+  boot_disk {
+    initialize_params {
+      image_id         = var.image_id
+      size             = each.value.disk
+    }
+  }
+   metadata = {
+    user-data = "${file("./meta.yml")}"
+  }
+}
+
+resource "local_file" "hosts_cfg" {
+  filename = "./inventory/hosts.cfg"
+  content = templatefile("./inventory/hosts.tftpl", { webservers = yandex_compute_instance.vm })
 ```
-В указанном примере playbook настроен на установку ПО на локальном хосте, для работы на нескольких хостах необходимо привести файл в следующий вид, указав тип подключения - ssh и ip адреса настраиваемых хостов:
+Variables и metadata могут быть заменены на пользовательские, для изменения параметров пользователя (имя, ssh ключ), variables можно менять название и параметры хостов (например добавить RAM для более надежной работы)
+
+### 4. Настройка параметров, необходимых для запуска playbook:
+
+**inventory** - /inventory/hosts.cfg:
 ```
-clickhouse:
-  hosts:
-    clickhouse-01:
-      ansible_host: <IP_here> ansible_connection: ssh
+[webservers]
+
+clickhouse ansible_host=158.160.104.65
+
+vector ansible_host=158.160.114.122
+
+lighthouse ansible_host=158.160.101.213
+
+[webservers:vars]
+ansible_python=/usr/bin/python3
+```
+Формируется из шаблона при создании хостов `terraform apply`
+```
+[webservers]
+
+%{~ for i in webservers ~}
+
+${i["name"]} ansible_host=${i["network_interface"][0]["nat_ip_address"]}
+
+%{~ endfor ~}
+
+[webservers:vars]
+ansible_python=/usr/bin/python3
 ```
 
-**variables** - /group_vars/clickhouse/vars.yml:
-```
-clickhouse_version: "23.8.9.54"
-clickhouse_packages:
-  - clickhouse-client
-  - clickhouse-server
-  - clickhouse-common-static
 
-vector_version: "0.35.0"
-vector_os_arch: "x86_64"
-vector_workdir: "/root/ansible/08-ansible-02-playbook"
-sourse_file: "/var/log/mongodb/mongod.log"
-version_number: "1"
-path_file:  "/tmp/vector-%Y-%m-%d.log"
-```
-
-В данном файле представлены следующие переменные:
-- clickhouse_version - версия clickhouse, подходящую можно выбрать [здесь](https://packages.clickhouse.com);
-- clickhouse_packages - устанавливаемые пакеты (сервер, клиент, исполняемые файлы ClickHouse);
-- vector_version - версия vector, подхлодящую можно выбрать [здесь](https://packages.timber.io/vector/);
-- vector_os_arch - архитектура vector (x86, aarch64 в зависимости от используемого железа);
-- vector_workdir - директория, в которой будет установлен vector;
-- sourse_file - файл, из которого vector будет брать данные для дальнейшей обработки (подробнее в п.4 настоящей инструкции);
-- version_number- версия "обработчика данных" lua (подробнее в п.4 настоящей инструкции);
-- path_file - файл, в который попадает обработанная информация из `sourse_file` (подробнее в п.4 настоящей инструкции).
 
 ---
 
-### 4. Настройка комбайна "Vector" 
+### 5. Настройка "Clickhouse"
+
+
+
+### 6. Настройка  "Vector" 
 
 Настройка vector на управляемых хостах осуществляется с помрощью конфигурационного файла, автоматически генерируемого из шаблона /templates/vector.j2:
 ```
-sources:
-  my_source_id:
-    type: file
-    include:
-      - {{ sourse_file }}
+data_dir: "/var/lib/vector"
 
-transforms:
-  my_transform_id:
-    type: lua
-    inputs:
-      - my_source_id:
-    version: {{ version_number }}
+
+sources:
+  dummy_logs:
+    type: demo_logs
+    format: syslog
+    interval: 1
 
 sinks:
-  my_sink_id:
-    type: file
+  clickhouse_logs:
+    type: clickhouse
     inputs:
-      - my_transform_id
-    path: {{ path_file }}
+      - dummy_logs
+    database: "logs"
+    endpoint: "http//158.160.104.65:8123"
+    table: "logs_table"
+    acknowledgements:
+      enabled: false
+    healthcheck:
+      enabled: false
+    compression: gzip
+    skip_unknown_fields: true
 ```
+В данной конфигурации на вход берутся автоматически генерируемые логи и отправляются в таблицу, созданную в Clickhouse. 
+
 
 Используемые в шаблоне переменные указаны в vars.yml (п.3 настоящей инструкции).
 
@@ -100,7 +154,7 @@ sinks:
 
 ---
 
-### 5. Структура Ansible-playbook:
+### 6. Структура Ansible-playbook:
 
 **Установка Clickhouse на хосты, указанные в inventory**
 
@@ -126,7 +180,7 @@ sinks:
 
 ---
 
-### 6. Запуск Ansible-playbook:
+### 7. Запуск Ansible-playbook:
 ```
 ansible-playbook -i inventory/prod.yml site.yml
 ```
