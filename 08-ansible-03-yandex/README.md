@@ -365,7 +365,7 @@ Vector
             src: "/home/leo/"
             dest: "/usr/bin/"
             mode: "0755"
-            owner: leo
+            owner: root
             group: root
 
         - name: Vector | Template config
@@ -374,7 +374,7 @@ Vector
             src: template/vector.yml.j2
             dest: /etc/vector/vector.yml
             mode: "0755"
-            owner: "leo"
+            owner: "root"
             group: "root"
             validate: vector validate --no-environment --config-yaml %s
         - name: Vector | Create systemd unit
@@ -383,7 +383,7 @@ Vector
             src: template/vector.service.j2
             dest: /etc/systemd/system/vector.service
             mode: "0755"
-            owner: "leo"
+            owner: "root"
             group: "root"
 ```
 5. Подготовьте свой inventory-файл.
@@ -396,16 +396,29 @@ ansible-lint playbook.yml
 ```
 Ошибок не обнаружено, кроме пары лишних пробелов.
 
+Запускаем playbook
+```
+ansible-playbook -i inventory/hosts.cfg playbook.ym
+```
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-03-yandex/screenshots/ansible5.png)
+
 7. Попробуйте запустить playbook на этом окружении с флагом `--check`.
 ```
 ansible-playbook -i inventory/hosts.cfg playbook.yml --check
 ```
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-03-yandex/screenshots/ansible6.png)
+
   
 8. Запустите playbook на `prod.yml` окружении с флагом `--diff`. Убедитесь, что изменения на системе произведены.
 ```
 ansible-playbook -i inventory/hosts.cfg playbook.yml --diff
 ```
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-03-yandex/screenshots/ansible7.png)
+
 9. Повторно запустите playbook с флагом `--diff` и убедитесь, что playbook идемпотентен.
+
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-03-yandex/screenshots/ansible8.png)
+
 10. Подготовьте README.md-файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги.
 11. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-03-yandex` на фиксирующий коммит, в ответ предоставьте ссылку на него.
 
