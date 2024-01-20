@@ -425,6 +425,8 @@ ansible-playbook -i inventory/hosts.cfg playbook.yml --diff
   
 11. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-03-yandex` на фиксирующий коммит, в ответ предоставьте ссылку на него.
 
+Репозиторий доступен по [ссылке](https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-03)
+
 ---
 
 ### Как оформить решение задания
