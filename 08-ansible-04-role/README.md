@@ -41,13 +41,28 @@
 7. Повторите шаги 3–6 для LightHouse. Помните, что одна роль должна настраивать один продукт.
 8. Выложите все roles в репозитории. Проставьте теги, используя семантическую нумерацию. Добавьте roles в `requirements.yml` в playbook.
 9. Переработайте playbook на использование roles. Не забудьте про зависимости LightHouse и возможности совмещения `roles` с `tasks`.
+```
+---
+- name: Install Nginx
+  hosts: webservers
+  roles:
+    - nginx
+
+- name: Install Clickhouse
+  hosts: clickhouse
+  roles:
+    - clickhouse
+
+- name: Install Lighthouse
+  hosts: lighthouse
+  roles:
+    - lighthouse
+- name: Install Vector
+  hosts: vector
+  roles:
+    - vector
+```
 10. Выложите playbook в репозиторий.
 11. В ответе дайте ссылки на оба репозитория с roles и одну ссылку на репозиторий с playbook.
-
----
-
-### Как оформить решение задания
-
-Выполненное домашнее задание пришлите в виде ссылки на .md-файл в вашем репозитории.
 
 ---
