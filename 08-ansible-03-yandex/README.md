@@ -398,7 +398,7 @@ ansible-lint playbook.yml
 
 Запускаем playbook
 ```
-ansible-playbook -i inventory/hosts.cfg playbook.ym
+ansible-playbook -i inventory/hosts.cfg playbook.yml
 ```
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-03-yandex/screenshots/ansible5.png)
 
