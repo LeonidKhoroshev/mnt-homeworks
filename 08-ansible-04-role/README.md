@@ -27,10 +27,10 @@
    ```
 
 2. При помощи `ansible-galaxy` скачайте себе эту роль.
-```
-ansible-galaxy install -r requirements.yml
-```
-![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-04-role/screenshots/role1.png)
+   ```
+   ansible-galaxy install -r requirements.yml
+   ```
+   ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-04-role/screenshots/role1.png)
 
 3. Создайте новый каталог с ролью при помощи `ansible-galaxy role init vector-role`.
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-04-role/screenshots/role2.png)
