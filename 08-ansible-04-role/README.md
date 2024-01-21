@@ -34,6 +34,8 @@ ansible-galaxy install -r requirements.yml
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-04-role/screenshots/role1.png)
 
 3. Создайте новый каталог с ролью при помощи `ansible-galaxy role init vector-role`.
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-04-role/screenshots/role2.png)
+
 4. На основе tasks из старого playbook заполните новую role. Разнесите переменные между `vars` и `default`. 
 5. Перенести нужные шаблоны конфигов в `templates`.
 6. Опишите в `README.md` обе роли и их параметры. Пример качественной документации ansible role [по ссылке](https://github.com/cloudalchemy/ansible-prometheus).
