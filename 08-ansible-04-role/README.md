@@ -238,7 +238,7 @@ sinks:
 cd terraform
 terrafom apply 
 ```
-![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-04-role/screenshots/role2.png)
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-04-role/screenshots/role4.png)
 - проверяем inventory файл
 ```
 cat inventory/hosts.cfg
