@@ -160,6 +160,7 @@ sinks:
 ```
 
 Аналогичные действия производим и для создания clickhouse-role
+
 Таски:
 ```yaml
 - name: Get clickhouse-common-static distrib
@@ -202,7 +203,8 @@ sinks:
     name: clickhouse-server
     state: restarted
 ```
-8. Выложите все roles в репозитории. Проставьте теги, используя семантическую нумерацию. Добавьте roles в `requirements.yml` в playbook.
+8. Выложите все roles в репозитории. Проставьте теги, используя семантическую нумерацию. Добавьте roles в [requirements.yml](https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-04/requirements.yml) в playbook.
+
 9. Переработайте playbook на использование roles. Не забудьте про зависимости LightHouse и возможности совмещения `roles` с `tasks`.
 ```yaml
 ---
