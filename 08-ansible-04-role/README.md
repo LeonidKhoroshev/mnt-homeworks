@@ -264,6 +264,6 @@ ansible-playbook -i inventory/hosts.cfg playbook_roles.yml
 
 10. Выложите playbook_roles.yml в [репозиторий](https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-04).
 
-11. В ответе дайте ссылки на оба репозитория с [roles](https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-04/roles) и одну ссылку на репозиторий с [playbook](https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-04).
+11. В ответе дайте ссылки на  репозитории с roles ([nginx](https://github.com/LeonidKhoroshev/nginx.git), [clickhouse](https://github.com/LeonidKhoroshev/clickhouse-role), [lighthouse](https://github.com/LeonidKhoroshev/lighthouse.git), [vector](https://github.com/LeonidKhoroshev/vector.git)) и одну ссылку на репозиторий с [playbook](https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-04).
 
 ---
