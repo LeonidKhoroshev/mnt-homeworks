@@ -121,7 +121,7 @@ sinks:
 ```
 В рамках выполнения задания, помимо vector-role подготовлено еще три роли:
  - [nginx-role](https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-04/roles/nginx-role);
- - clickhouse-role(https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-04/roles/clickhouse-role);
+ - [clickhouse-role](https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-04/roles/clickhouse-role);
  - [lighthouse-role](https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-04/roles/lighthouse-role).
 
 6. Опишите в `README.md` обе роли и их параметры. Пример качественной документации ansible role [по ссылке](https://github.com/cloudalchemy/ansible-prometheus).
