@@ -1,0 +1,23 @@
+data_dir: "/var/lib/vector"
+
+
+sources:
+  dummy_logs:
+    type: demo_logs
+    format: syslog
+    interval: 1
+
+sinks:
+  clickhouse_logs:
+    type: clickhouse
+    inputs:
+      - dummy_logs
+    database: "logs"
+    endpoint: "http//192.168.1.184:8123"
+    table: "logs_table"
+    acknowledgements:
+      enabled: false
+    healthcheck:
+      enabled: false
+    compression: gzip
+    skip_unknown_fields: true

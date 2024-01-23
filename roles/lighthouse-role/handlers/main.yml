@@ -1,0 +1,7 @@
+---
+# handlers file for lighthouse-role
+
+- name: Reload nginx
+  become: true
+  remote_user: leo
+  ansible.builtin.command: nginx -s reload

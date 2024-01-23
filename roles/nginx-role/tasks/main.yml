@@ -1,0 +1,22 @@
+---
+# tasks file for nginx-role
+- name: NGINX | Install eper-release
+  remote_user: leo
+  become: true
+  ansible.builtin.yum:
+    name: epel-release
+    state: present
+- name: NGINX | Install Nginx
+  become: true
+  ansible.builtin.yum:
+    name: nginx
+    state: present
+  notify: Start nginx
+- name: NGINX | Create general config
+  become: true
+  remote_user: leo
+  ansible.builtin.template:
+    src: templates/nginx.j2
+    dest: /etc/nginx/nginx.conf
+    mode: "0755"
+  notify: Reload nginx

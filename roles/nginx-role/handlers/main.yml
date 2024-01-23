@@ -1,0 +1,11 @@
+---
+# handlers file for nginx-role
+
+- name: Start nginx
+  remote_user: leo
+  become: true
+  ansible.builtin.command: nginx
+- name: Reload nginx
+  remote_user: leo
+  become: true
+  ansible.builtin.command: nginx -s reload

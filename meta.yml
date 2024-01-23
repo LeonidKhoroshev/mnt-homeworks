@@ -1,9 +1,0 @@
-#cloud-config
-users:
-  - name: leo
-    groups: sudo
-    shell: /bin/bash
-    sudo: ['ALL=(ALL) NOPASSWD:ALL']
-    ssh-authorized-keys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCgT8Ny1LD7hTjTan3NOKzgpZ9FEJC7+G7Zfm+bs+9bXZhQ/B6gwjJh0VI6RsVo2wZKsosIc2DZogA+NlWbefQfiC5RKtt/iZMEofBHkhCgxUEHdUEqUkaC7AFfkr4ozrYPKlQOCBbc6S4xJewUmNliXJLrHuv6RZ5TKoIgiKRwaOVT7JqUAnLWyw43+FSpzHUfefLVzaIOVIQV4SEEyl3d/2Cl5gJ/R7sulPomaRwejPi8LG+VZaoF9Wh2JlpCEU7Vm1WKhZ2jd//LlGKoVnqMWlNtSdXVw5B6XZEpCIQfES9DNrlWDyEACFSeSkus30f1Qpe1ZqyIqSnqVgpcANVz root@localhost.localdomain
-

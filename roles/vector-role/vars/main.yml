@@ -1,0 +1,6 @@
+---
+# vars file for vector-role
+
+vector_workdir: "/root/ansible/08-ansible-02-playbook"
+version_number: "1"
+path_file:  "/tmp/vector-%Y-%m-%d.log"

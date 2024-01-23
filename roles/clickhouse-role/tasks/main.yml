@@ -1,0 +1,33 @@
+- name: Get clickhouse-common-static distrib
+  ansible.builtin.get_url:
+    url: https://packages.clickhouse.com/rpm/lts/clickhouse-common-static-23.8.9.54.x86_64.rpm
+    dest: /home/leo/clickhouse-common-static-23.8.9.54.x86_64.rpm
+    mode: "0755"
+- name: Get clickhouse-server distrib
+  ansible.builtin.get_url:
+    url: https://packages.clickhouse.com/rpm/lts/clickhouse-server-23.8.9.54.x86_64.rpm
+    dest: /home/leo/clickhouse-server-23.8.9.54.x86_64.rpm
+    mode: "0755"
+- name: Get clickhouse-client distrib
+  ansible.builtin.get_url:
+    url: https://packages.clickhouse.com/rpm/lts/clickhouse-client-23.8.9.54.x86_64.rpm
+    dest: /home/leo/clickhouse-client-23.8.9.54.x86_64.rpm
+    mode: "0755"
+- name: Install clickhouse packages
+  become: true
+  ansible.builtin.yum:
+    name:
+      - clickhouse-common-static-23.8.9.54.x86_64.rpm
+      - clickhouse-client-23.8.9.54.x86_64.rpm
+      - clickhouse-server-23.8.9.54.x86_64.rpm
+  notify: Start clickhouse service
+- name: Flush handlers
+  meta: flush_handlers
+- name: Create database
+  become: true
+  remote_user: leo
+  ansible.builtin.command: "clickhouse-client -q 'create database logs;'"
+  register: create_db
+  failed_when: create_db.rc != 0 and create_db.rc !=82
+  changed_when: create_db.rc == 0
+

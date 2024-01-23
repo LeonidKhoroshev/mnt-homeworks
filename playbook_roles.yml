@@ -1,0 +1,25 @@
+---
+- name: Install Nginx
+  hosts: webservers
+  remote_user: leo
+  become: true
+  roles:
+    - nginx-role
+- name: Install Clickhouse
+  hosts: clickhouse
+  remote_user: leo
+  become: true  
+  roles:
+    - clickhouse-role
+- name: Install Lighthouse
+  hosts: lighthouse
+  remote_user: leo
+  become: true
+  roles:
+    - lighthouse-role
+- name: Install Vector
+  hosts: vector
+  remote_user: leo
+  become: true  
+  roles:
+    - vector-role

@@ -1,0 +1,6 @@
+- name: Start clickhouse service
+  become: true
+  remote_user: leo
+  ansible.builtin.service:
+    name: clickhouse-server
+    state: restarted
