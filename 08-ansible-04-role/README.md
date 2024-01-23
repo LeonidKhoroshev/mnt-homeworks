@@ -203,7 +203,13 @@ sinks:
     name: clickhouse-server
     state: restarted
 ```
-8. Выложите все roles в репозитории. Проставьте теги, используя семантическую нумерацию. Добавьте roles в [requirements.yml](https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-04/requirements.yml) в playbook.
+8. Выложите все roles в репозитории. Проставьте теги, используя семантическую нумерацию. Добавьте roles в [requirements.yml](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/ansible-04/requirements.yml) в playbook.
+
+Проверим возможность загрузки ролей из requirements.yml
+```
+ansible-galaxy install -r requirements.yml
+```
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-04-role/screenshots/role5.png)
 
 9. Переработайте playbook на использование roles. Не забудьте про зависимости LightHouse и возможности совмещения `roles` с `tasks`.
 ```yaml
