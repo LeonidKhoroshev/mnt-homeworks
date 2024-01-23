@@ -120,9 +120,9 @@ sinks:
     skip_unknown_fields: true
 ```
 В рамках выполнения задания, помимо vector-role подготовлено еще три роли:
- - nginx-role;
- - clickhouse-role;
- - lighthouse-role.
+ - [nginx-role](https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-04/roles/nginx-role);
+ - clickhouse-role(https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-04/roles/clickhouse-role);
+ - [lighthouse-role](https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-04/roles/lighthouse-role).
 
 6. Опишите в `README.md` обе роли и их параметры. Пример качественной документации ansible role [по ссылке](https://github.com/cloudalchemy/ansible-prometheus).
 7. Повторите шаги 3–6 для LightHouse. Помните, что одна роль должна настраивать один продукт.
@@ -260,8 +260,8 @@ ansible-playbook -i inventory/hosts.cfg playbook_roles.yml
 ```
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-04-role/screenshots/role3.png)
 
-10. Выложите playbook в репозиторий.
+10. Выложите playbook_roles.yml в [репозиторий](https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-04).
 
-11. В ответе дайте ссылки на оба репозитория с roles и одну ссылку на репозиторий с playbook.
+11. В ответе дайте ссылки на оба репозитория с [roles](https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-04/roles) и одну ссылку на репозиторий с [playbook](https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-04).
 
 ---
