@@ -120,9 +120,9 @@ sinks:
     skip_unknown_fields: true
 ```
 В рамках выполнения задания, помимо vector-role подготовлено еще три роли:
- - [nginx-role](https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-04/roles/nginx-role);
- - [clickhouse-role](https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-04/roles/clickhouse-role);
- - [lighthouse-role](https://github.com/LeonidKhoroshev/mnt-homeworks/tree/ansible-04/roles/lighthouse-role).
+ - [nginx-role](https://github.com/LeonidKhoroshev/nginx.git);
+ - [clickhouse-role](https://github.com/LeonidKhoroshev/clickhouse.git);
+ - [lighthouse-role](https://github.com/LeonidKhoroshev/lighthouse.git).
 
 6. Опишите в `README.md` обе роли и их параметры. Пример качественной документации ansible role [по ссылке](https://github.com/cloudalchemy/ansible-prometheus).
 7. Повторите шаги 3–6 для LightHouse. Помните, что одна роль должна настраивать один продукт.
