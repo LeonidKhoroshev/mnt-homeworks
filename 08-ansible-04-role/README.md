@@ -62,7 +62,14 @@
   roles:
     - vector
 ```
+Проверяем, что playbook работает
+```
+ansible-playbook -i inventory/hosts.cfg playbook_roles.yml
+```
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-04-role/screenshots/role3.png)
+
 10. Выложите playbook в репозиторий.
+
 11. В ответе дайте ссылки на оба репозитория с roles и одну ссылку на репозиторий с playbook.
 
 ---
