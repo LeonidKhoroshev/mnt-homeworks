@@ -45,13 +45,17 @@ verifier:
 molecule test
 ```
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-05-testing/screenshots/test3.png)
-Найденные ошибки:
-- 
-
+Для исправления данной ошибки `couldn't resolve module/action 'community.docker.docker_container'` установлены следующие коллекции:
+```
+ansible-galaxy collection install community.docker
+ansible-galaxy collection install community.general
+```
+Запускаем повторно `molecule test`
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-05-testing/screenshots/test4.png)
 
 4. Добавьте несколько assert в verify.yml-файл для  проверки работоспособности vector-role (проверка, что конфиг валидный, проверка успешности запуска и др.). 
 5. Запустите тестирование роли повторно и проверьте, что оно прошло успешно.
-5. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
+6. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
 
 ### Tox
 
