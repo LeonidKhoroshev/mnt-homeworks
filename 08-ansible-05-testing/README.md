@@ -52,6 +52,7 @@ ansible-galaxy collection install community.general
 ```
 Запускаем повторно `molecule test`
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-05-testing/screenshots/test4.png)
+Получаем проблему с отсутвием теста `equalto`, для исправления
 
 4. Добавьте несколько assert в verify.yml-файл для  проверки работоспособности vector-role (проверка, что конфиг валидный, проверка успешности запуска и др.). 
 5. Запустите тестирование роли повторно и проверьте, что оно прошло успешно.
