@@ -55,9 +55,9 @@ ansible-galaxy collection install community.general
 Получаем проблему с отсутвием теста `equalto`, для исправления обновляем версии ansible (с core 2.13 до 2.16.2) и python (c 3.6 до 3.10).
 
 Тестируем `molecule test`
-[Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-05-testing/screenshots/test5.png)
-[Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-05-testing/screenshots/test6.png)
-[Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-05-testing/screenshots/test7.png)
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-05-testing/screenshots/test5.png)
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-05-testing/screenshots/test6.png)
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-05-testing/screenshots/test7.png)
 
 4. Добавьте несколько assert в verify.yml-файл для  проверки работоспособности vector-role (проверка, что конфиг валидный, проверка успешности запуска и др.). 
 5. Запустите тестирование роли повторно и проверьте, что оно прошло успешно.
