@@ -80,9 +80,22 @@ ansible-galaxy collection install community.general
         success_msg: "Config valid"
         fail_msg: "Config not valid"
 ```
-Проверяем `molecule test`
 
+Корректируем converge.yml:
+```
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include vector"
+      include_role:
+        name: vector-role
+```
+
+Проверяем `molecule test`
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-05-testing/screenshots/molecule8.png)
 5. Запустите тестирование роли повторно и проверьте, что оно прошло успешно.
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-05-testing/screenshots/molecule9.png)
 6. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
 
 ### Tox
