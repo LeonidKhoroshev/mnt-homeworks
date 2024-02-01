@@ -59,7 +59,29 @@ ansible-galaxy collection install community.general
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-05-testing/screenshots/test6.png)
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-05-testing/screenshots/test7.png)
 
-4. Добавьте несколько assert в verify.yml-файл для  проверки работоспособности vector-role (проверка, что конфиг валидный, проверка успешности запуска и др.). 
+4. Добавьте несколько assert в verify.yml-файл для  проверки работоспособности vector-role (проверка, что конфиг валидный, проверка успешности запуска и др.).
+здаем файл verify.yml
+```
+- name: Verify
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Include vector role
+      include_role:
+        name: vector
+    - name: Check vector service
+      assert:
+        that: vector_pid.stdout != 0
+        success_msg: "Service is running"
+        fail_msg: "Service not running"
+    - name: Check vector config
+      assert:
+        that: valid_config.rc == 0
+        success_msg: "Config valid"
+        fail_msg: "Config not valid"
+```
+Проверяем `molecule test`
+
 5. Запустите тестирование роли повторно и проверьте, что оно прошло успешно.
 6. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
 
