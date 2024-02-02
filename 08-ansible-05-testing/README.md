@@ -106,7 +106,7 @@ ansible-galaxy collection install community.general
 docker run --privileged=True -v /root/netology/roles/vector-role:/opt/vector-role -w /opt/vector-role -it aragast/netology:latest /bin/bash
 ```
 3. Внутри контейнера выполните команду `tox`, посмотрите на вывод.
-![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-05-testing/screenshots/test1.png)
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-05-testing/screenshots/test10.png)
 Вывод показал
 ```
 {'driver': [{'name': ['unallowed value docker']}]}
