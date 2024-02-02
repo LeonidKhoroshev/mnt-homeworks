@@ -106,9 +106,26 @@ ansible-galaxy collection install community.general
 docker run --privileged=True -v /root/netology/roles/vector-role:/opt/vector-role -w /opt/vector-role -it aragast/netology:latest /bin/bash
 ```
 3. Внутри контейнера выполните команду `tox`, посмотрите на вывод.
-
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-05-testing/screenshots/test1.png)
+Вывод показал
+```
+{'driver': [{'name': ['unallowed value docker']}]}
+ERROR: InvocationError for command /opt/vector-role/.tox/py37-ansible30/bin/molecule test --destroy always (exited with code 1)
+```
+что достаточно логично, так как в запущенном нами контейнере отсутствует Docker.
 
 5. Создайте облегчённый сценарий для `molecule` с драйвером `molecule_podman`. Проверьте его на исполнимость.
+
+Корректируем файл  tox-requirements.txt для замены драйвера с docker на podman
+```
+selinux
+ansible-lint==5.1.3
+yamllint==1.33.0
+lxml
+molecule==6.22.2
+molecule_podman
+jmespath
+```
 6. Пропишите правильную команду в `tox.ini`, чтобы запускался облегчённый сценарий.
 8. Запустите команду `tox`. Убедитесь, что всё отработало успешно.
 9. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
