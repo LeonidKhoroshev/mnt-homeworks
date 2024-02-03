@@ -154,6 +154,8 @@ commands =
 docker run --privileged=True -v /root/netology/roles/vector-role:/opt/vector-role -w /opt/vector-role -it aragast/netology:latest /bin/bash
 tox
 ```
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-05-testing/screenshots/test11.png)
+Сценарий отрабатывает, по вектор  с указанными зависимостями не стартует.
 
 9. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
 
