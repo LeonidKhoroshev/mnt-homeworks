@@ -10,7 +10,7 @@
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-06-module/screenshots/module1.png)
 6. Установите зависимости `pip install -r requirements.txt`.
 7. Запустите настройку окружения `. hacking/env-setup`.
-![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-06-module/screenshots/module1.png)
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-06-module/screenshots/module2.png)
 8. Если все шаги прошли успешно — выйдите из виртуального окружения `deactivate`.
 9. Ваше окружение настроено. Чтобы запустить его, нужно находиться в директории `ansible` и выполнить конструкцию `. venv/bin/activate && . hacking/env-setup`.
 
