@@ -1,4 +1,4 @@
-# Домашнее задание к занятию 6 «Создание собственных модулей»
+# Домашнее задание к занятию 6 «Создание собственных модулей» - Леонид Хорошев
 
 ## Подготовка к выполнению
 
@@ -7,11 +7,12 @@
 3. Зайдите в директорию Ansible: `cd ansible`.
 4. Создайте виртуальное окружение: `python3 -m venv venv`.
 5. Активируйте виртуальное окружение: `. venv/bin/activate`. Дальнейшие действия производятся только в виртуальном окружении.
- ![Alt text]()
-7. Установите зависимости `pip install -r requirements.txt`.
-8. Запустите настройку окружения `. hacking/env-setup`.
-9. Если все шаги прошли успешно — выйдите из виртуального окружения `deactivate`.
-10. Ваше окружение настроено. Чтобы запустить его, нужно находиться в директории `ansible` и выполнить конструкцию `. venv/bin/activate && . hacking/env-setup`.
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-06-module/screenshots/module1.png)
+6. Установите зависимости `pip install -r requirements.txt`.
+7. Запустите настройку окружения `. hacking/env-setup`.
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-06-module/screenshots/module1.png)
+8. Если все шаги прошли успешно — выйдите из виртуального окружения `deactivate`.
+9. Ваше окружение настроено. Чтобы запустить его, нужно находиться в директории `ansible` и выполнить конструкцию `. venv/bin/activate && . hacking/env-setup`.
 
 ## Основная часть
 
