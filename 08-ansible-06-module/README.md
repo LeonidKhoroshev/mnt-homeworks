@@ -9,8 +9,8 @@
 5. Активируйте виртуальное окружение: `. venv/bin/activate`. Дальнейшие действия производятся только в виртуальном окружении.
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-06-module/screenshots/module1.png)
 6. Установите зависимости `pip install -r requirements.txt`.
-7. Запустите настройку окружения `. hacking/env-setup`.
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-06-module/screenshots/module2.png)
+7. Запустите настройку окружения `. hacking/env-setup`.
 8. Если все шаги прошли успешно — выйдите из виртуального окружения `deactivate`.
 9. Ваше окружение настроено. Чтобы запустить его, нужно находиться в директории `ansible` и выполнить конструкцию `. venv/bin/activate && . hacking/env-setup`.
 
@@ -19,6 +19,9 @@
 Ваша цель — написать собственный module, который вы можете использовать в своей role через playbook. Всё это должно быть собрано в виде collection и отправлено в ваш репозиторий.
 
 **Шаг 1.** В виртуальном окружении создайте новый `my_own_module.py` файл.
+```
+nano my_own_module.py
+```
 
 **Шаг 2.** Наполните его содержимым:
 
