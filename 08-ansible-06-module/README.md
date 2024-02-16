@@ -165,17 +165,79 @@ if __name__ == '__main__':
 
 **Шаг 3.** Заполните файл в соответствии с требованиями Ansible так, чтобы он выполнял основную задачу: module должен создавать текстовый файл на удалённом хосте по пути, определённом в параметре `path`, с содержимым, определённым в параметре `content`.
 
+Ключевые изменения:
+```
+EXAMPLES = r'''
+# Pass in a message
+- name: Test with a message
+  my_namespace.my_collection.my_own_module:
+    path:'/root/my_own_collection/ansible/args.txt'
+    content: 'This file has been created with my_own_module'
+
+'''
+
+RETURN = r'''
+# These are examples of possible return values, and in general should use other names for return values.
+original_message:
+    description: The original name param that was passed in.
+    type: str
+    returned: always
+    sample: 'File has been created with my_own_module'
+message:
+    description: The output message that the test module generates.
+    type: str
+    returned: always
+    sample: 'File created'
+'''
+
+from ansible.module_utils.basic import AnsibleModule
+
+def run_module():
+    # define available arguments/parameters a user can pass to the module
+    module_args = dict(
+        path=dict(type='str', required=True),
+        content=dict(type='str', required=False)
+```
+Полный код доступен по [ссылке]()
+
 **Шаг 4.** Проверьте module на исполняемость локально.
+```
+python -m ansible.modules.my_own_module playload.json
+```
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-06-module/screenshots/module3.png)
 
 **Шаг 5.** Напишите single task playbook и используйте module в нём.
+```
+---
+- name: Check module
+  hosts: localhost
+  tasks:
+    - name: Test my module
+      my_own_module:
+        path: "/root/my_own_collection/ansible/args.txt"
+        content: "Success!"
+```
 
 **Шаг 6.** Проверьте через playbook на идемпотентность.
+```
+ansible-playbook single_playbook.yml
+```
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-06-module/screenshots/module4.png)
+Запускаем playbook повторно - результат неизменен.
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-06-module/screenshots/module5.png)
 
 **Шаг 7.** Выйдите из виртуального окружения.
+```
+deactivate
+```
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-06-module/screenshots/module6.png)
+
 
 **Шаг 8.** Инициализируйте новую collection: `ansible-galaxy collection init my_own_namespace.yandex_cloud_elk`.
+![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-06-module/screenshots/module7.png)
 
 **Шаг 9.** В эту collection перенесите свой module в соответствующую директорию.
+
 
 **Шаг 10.** Single task playbook преобразуйте в single task role и перенесите в collection. У role должны быть default всех параметров module.
 
