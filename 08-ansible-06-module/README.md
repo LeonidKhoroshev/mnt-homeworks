@@ -237,11 +237,30 @@ deactivate
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-06-module/screenshots/module7.png)
 
 **Шаг 9.** В эту collection перенесите свой module в соответствующую директорию.
-
+```
+cp my_own_module.py /root/my_own_namespace/yandex_cloud_elk/plugins/modules/my_own_module.py
+```
 
 **Шаг 10.** Single task playbook преобразуйте в single task role и перенесите в collection. У role должны быть default всех параметров module.
+```
+cd my_own_namespace/yandex_cloud_elk/roles
+ansible-galaxy init single-task-role
+cd single-task-role/tasks
+nano main.yml
+- name: Check module
+  hosts: localhost
+  tasks:
+    - name: Test my module
+      my_own_module:
+        path: "/root/my_own_collection/ansible/args.txt"
+        content: "Success!"
+```
 
 **Шаг 11.** Создайте playbook для использования этой role.
+```
+cd my_own_namespace
+nano playbook.yml
+```
 
 **Шаг 12.** Заполните всю документацию по collection, выложите в свой репозиторий, поставьте тег `1.0.0` на этот коммит.
 
