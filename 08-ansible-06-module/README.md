@@ -260,6 +260,10 @@ nano main.yml
 ```
 cd my_own_namespace
 nano playbook.yml
+- name: Create file
+  hosts: localhost
+  roles:
+    - single-task-role
 ```
 
 **Шаг 12.** Заполните всю документацию по collection, выложите в свой репозиторий, поставьте тег `1.0.0` на этот коммит.
