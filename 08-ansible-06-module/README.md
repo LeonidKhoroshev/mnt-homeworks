@@ -198,7 +198,6 @@ def run_module():
         path=dict(type='str', required=True),
         content=dict(type='str', required=False)
 ```
-Полный код доступен по [ссылке]()
 
 **Шаг 4.** Проверьте module на исполняемость локально.
 ```
@@ -278,27 +277,14 @@ cp yandex_cloud_elk/my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz  my_collectio
 cp yandex_cloud_elk/playbook.yml  my_collection/playbook.yml
 ```
 
-**Шаг 15.** Установите collection из локального архива: `ansible-galaxy collection install <archivename>.tar.gz`.
+**Шаг 15.** Установите collection из локального архива: `ansible-galaxy collection ihttps://github.com/LeonidKhoroshev/my_own_collection/blob/new_collection/my_own_namespace-install <archivename>.tar.gz`.
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-06-module/screenshots/module9.png)
 
 **Шаг 16.** Запустите playbook, убедитесь, что он работает.
 ![Alt text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/08-ansible-06-module/screenshots/module10.png)
 
-**Шаг 17.** В ответ необходимо прислать ссылки на collection и tar.gz архив, а также скриншоты выполнения пунктов 4, 6, 15 и 16.
+**Шаг 17.** Прилагаю ссылки на [collection](https://github.com/LeonidKhoroshev/my_own_collection) и [tar.gz](https://github.com/LeonidKhoroshev/my_own_collection/blob/new_collection/my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz) архив.
 
-## Необязательная часть
 
-1. Реализуйте свой модуль для создания хостов в Yandex Cloud.
-2. Модуль может и должен иметь зависимость от `yc`, основной функционал: создание ВМ с нужным сайзингом на основе нужной ОС. Дополнительные модули по созданию кластеров ClickHouse, MySQL и прочего реализовывать не надо, достаточно простейшего создания ВМ.
-3. Модуль может формировать динамическое inventory, но эта часть не является обязательной, достаточно, чтобы он делал хосты с указанной спецификацией в YAML.
-4. Протестируйте модуль на идемпотентность, исполнимость. При успехе добавьте этот модуль в свою коллекцию.
-5. Измените playbook так, чтобы он умел создавать инфраструктуру под inventory, а после устанавливал весь ваш стек Observability на нужные хосты и настраивал его.
-6. В итоге ваша коллекция обязательно должна содержать: clickhouse-role (если есть своя), lighthouse-role, vector-role, два модуля: my_own_module и модуль управления Yandex Cloud хостами и playbook, который демонстрирует создание Observability стека.
-
----
-
-### Как оформить решение задания
-
-Выполненное домашнее задание пришлите в виде ссылки на .md-файл в вашем репозитории.
 
 ---
