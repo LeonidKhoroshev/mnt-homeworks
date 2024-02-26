@@ -35,7 +35,7 @@
 
 1. Создайте [задачу с типом bug](https://khoroshevlv.atlassian.net/browse/H01KB-2?atlOrigin=eyJpIjoiZDRkYTRjZDliYzU5NDk1Zjg4NGE0M2E3MDZlODIzZjkiLCJwIjoiaiJ9), попытайтесь провести его по всему [workflow до Done](https://khoroshevlv.atlassian.net/jira/software/projects/H01KB/boards/1?atlOrigin=eyJpIjoiYjEzMTk1YmM2YjUxNDBlZTlmMjI5MTcyZDIyZTI1YmUiLCJwIjoiaiJ9).
 
-![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-01-intro/screenshots/jira2.png)
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-01-intro/screenshots/jira3.png)
 2. Создайте задачу с типом epic, к ней привяжите несколько задач с типом task, проведите их по всему workflow до Done. 
 
 3. При проведении обеих задач по статусам используйте kanban. 
