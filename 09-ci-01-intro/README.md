@@ -33,7 +33,7 @@
 
 **Что нужно сделать**
 
-1. Создайте задачу с типом bug, попытайтесь провести его по всему workflow до Done. 
+1. Создайте [задачу с типом bug](https://khoroshevlv.atlassian.net/browse/H01KB-2?atlOrigin=eyJpIjoiZDRkYTRjZDliYzU5NDk1Zjg4NGE0M2E3MDZlODIzZjkiLCJwIjoiaiJ9), попытайтесь провести его по всему workflow до Done. 
 2. Создайте задачу с типом epic, к ней привяжите несколько задач с типом task, проведите их по всему workflow до Done. 
 3. При проведении обеих задач по статусам используйте kanban. 
 4. Верните задачи в статус Open.
