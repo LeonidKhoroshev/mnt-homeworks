@@ -44,7 +44,7 @@
 3. При проведении обеих задач по статусам используйте kanban. 
 4. Верните задачи в статус Open.
 
-![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-01-intro/screenshots/jira5.png)
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-01-intro/screenshots/jira51.png)
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-01-intro/screenshots/jira6.png)
  
 5. Перейдите в Scrum, запланируйте новый спринт, состоящий из задач эпика и одного бага, стартуйте спринт, проведите задачи до состояния Closed. Закройте спринт.
