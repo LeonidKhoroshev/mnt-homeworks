@@ -1,4 +1,4 @@
-# Домашнее задание к занятию 7 «Жизненный цикл ПО» - Леонид Хорошев
+![2024-02-27_14-32-49](https://github.com/LeonidKhoroshev/mnt-homeworks/assets/114744186/cb5f1af9-2c29-4a60-8b69-8caf35fd9de4)# Домашнее задание к занятию 7 «Жизненный цикл ПО» - Леонид Хорошев
 
 ## Подготовка к выполнению
 
@@ -43,6 +43,10 @@
 
 3. При проведении обеих задач по статусам используйте kanban. 
 4. Верните задачи в статус Open.
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-01-intro/screenshots/jira5.png)
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-01-intro/screenshots/jira6.png)
+ 
 5. Перейдите в Scrum, запланируйте новый спринт, состоящий из задач эпика и одного бага, стартуйте спринт, проведите задачи до состояния Closed. Закройте спринт.
 6. Если всё отработалось в рамках ожидания — выгрузите схемы workflow для импорта в XML. Файлы с workflow и скриншоты workflow приложите к решению задания.
 
