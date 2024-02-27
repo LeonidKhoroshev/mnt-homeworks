@@ -55,9 +55,7 @@
 
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-01-intro/screenshots/jira8.png)
 
-6. Если всё отработалось в рамках ожидания — выгрузите схемы workflow для импорта в XML. Файлы с workflow и скриншоты workflow приложите к решению задания.
+6. Если всё отработалось в рамках ожидания — выгрузите схемы workflow ([Bug](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-01-intro/H01KB-2.xml), [Epic](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-01-intro/H01KB-3.xml)) для импорта в XML. Файлы с workflow и скриншоты workflow приложите к решению задания.
 
-[Bug](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-01-intro/H01KB-2.xml)
-[Epic](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-01-intro/H01KB-3.xml)
 
 ---
