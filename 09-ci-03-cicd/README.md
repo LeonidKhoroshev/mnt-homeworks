@@ -1,8 +1,20 @@
-# Домашнее задание к занятию 9 «Процессы CI/CD»
+# Домашнее задание к занятию 9 «Процессы CI/CD» - Леонид Хорошев
 
 ## Подготовка к выполнению
 
 1. Создайте два VM в Yandex Cloud с параметрами: 2CPU 4RAM Centos7 (остальное по минимальным требованиям).
+
+Для подготовки нашей инфраструктуры воспрользуемся готовыми конфигами terraform, используемыми ранее при выполнении домашних заданий по теме терраформ.
+```
+mkdir terraform
+cd terraform
+git init
+git pull https://github.com/LeonidKhoroshev/terraform-team
+terraform init
+```
+
+
+
 2. Пропишите в [inventory](./infrastructure/inventory/cicd/hosts.yml) [playbook](./infrastructure/site.yml) созданные хосты.
 3. Добавьте в [files](./infrastructure/files/) файл со своим публичным ключом (id_rsa.pub). Если ключ называется иначе — найдите таску в плейбуке, которая использует id_rsa.pub имя, и исправьте на своё.
 4. Запустите playbook, ожидайте успешного завершения.
