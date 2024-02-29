@@ -12,7 +12,7 @@ git init
 git pull https://github.com/LeonidKhoroshev/terraform-team
 terraform init
 ```
-
+Дополняем файлом с персональными переменными ` nano personal.auto.tfvars`, чтобы при не вводить каждый раз наши токены и id при создании инфраструктуры.
 
 
 2. Пропишите в [inventory](./infrastructure/inventory/cicd/hosts.yml) [playbook](./infrastructure/site.yml) созданные хосты.
