@@ -20,7 +20,32 @@ terraform apply
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/sonar1.png)
 
 2. Пропишите в [inventory](./infrastructure/inventory/cicd/hosts.yml) [playbook](./infrastructure/site.yml) созданные хосты.
+```
+---
+all:
+  hosts:
+    sonar-01:
+      ansible_host: 51.250.95.29
+    nexus-01:
+      ansible_host: 51.250.95.45
+  children:
+    sonarqube:
+      hosts:
+        sonar-01:
+    nexus:
+      hosts:
+        nexus-01:
+    postgres:
+      hosts:
+        sonar-01:
+  vars:
+    ansible_connection_type: paramiko
+    ansible_user: leo
+```
 3. Добавьте в [files](./infrastructure/files/) файл со своим публичным ключом (id_rsa.pub). Если ключ называется иначе — найдите таску в плейбуке, которая использует id_rsa.pub имя, и исправьте на своё.
+```
+cp /root/.ssh/id_rsa.pub files/id_rsa.pub
+```
 4. Запустите playbook, ожидайте успешного завершения.
 5. Проверьте готовность SonarQube через [браузер](http://localhost:9000).
 6. Зайдите под admin\admin, поменяйте пароль на свой.
