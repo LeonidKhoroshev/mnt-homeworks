@@ -68,6 +68,8 @@ nano site.yml
         state: started
         enabled: false
 ```
+Также следует обратить внимание на наличие "хардкода" в playbook - при изменении версии postgres необходимо проверить файл [site.yml](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/infrastructure/site.yml) и вручную изменить версию postgres в коде.
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/sonar4.png)
 
 5. Проверьте готовность SonarQube через [браузер](http://localhost:9000).
 6. Зайдите под admin\admin, поменяйте пароль на свой.
