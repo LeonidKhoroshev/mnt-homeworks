@@ -54,8 +54,12 @@ ansible-playbook site.yml -i inventory/cicd/hosts.yml
 Как видно - проблема в версии Postgres, переходим в файл с переменными и меняем версию с 11 на более актуальную
 ```
 nano inventory/cicd/group_vars/postgres.yml
-
+postgresql_version: 12
 ```
+Пробуем повторно
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/sonar3.png)
+Теперь ошибка при старте postgres, проблема в том, что при запуске сервиса система требует root пароль, который у нас не задан.
+
 
 5. Проверьте готовность SonarQube через [браузер](http://localhost:9000).
 6. Зайдите под admin\admin, поменяйте пароль на свой.
