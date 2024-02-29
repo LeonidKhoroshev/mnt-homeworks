@@ -50,6 +50,12 @@ cp /root/.ssh/id_rsa.pub files/id_rsa.pub
 ```
 ansible-playbook site.yml -i inventory/cicd/hosts.yml
 ```
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/sonar2.png)
+Как видно - проблема в версии Postgres, переходим в файл с переменными и меняем версию с 11 на более актуальную
+```
+nano inventory/cicd/group_vars/postgres.yml
+
+```
 
 5. Проверьте готовность SonarQube через [браузер](http://localhost:9000).
 6. Зайдите под admin\admin, поменяйте пароль на свой.
