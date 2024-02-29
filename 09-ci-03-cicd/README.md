@@ -59,7 +59,15 @@ postgresql_version: 12
 Пробуем повторно
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/sonar3.png)
 Теперь ошибка при старте postgres, проблема в том, что при запуске сервиса система требует root пароль, который у нас не задан.
-
+В соответствующем разделе плейбука отключаем запрос пароля, то есть меняем значение `enabled` с `true` на `false`.
+```
+nano site.yml
+    - name: Start pgsql service
+      systemd:
+        name: "postgresql-{{ postgresql_version }}"
+        state: started
+        enabled: false
+```
 
 5. Проверьте готовность SonarQube через [браузер](http://localhost:9000).
 6. Зайдите под admin\admin, поменяйте пароль на свой.
