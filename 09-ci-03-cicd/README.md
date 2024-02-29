@@ -47,6 +47,10 @@ all:
 cp /root/.ssh/id_rsa.pub files/id_rsa.pub
 ```
 4. Запустите playbook, ожидайте успешного завершения.
+```
+ansible-playbook site.yml -i inventory/cicd/hosts.yml
+```
+
 5. Проверьте готовность SonarQube через [браузер](http://localhost:9000).
 6. Зайдите под admin\admin, поменяйте пароль на свой.
 7.  Проверьте готовность Nexus через [бразуер](http://localhost:8081).
