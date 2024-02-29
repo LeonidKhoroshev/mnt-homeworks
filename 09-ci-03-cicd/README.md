@@ -72,6 +72,38 @@ nano site.yml
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/sonar4.png)
 
 5. Проверьте готовность SonarQube через [браузер](http://localhost:9000).
+В результате с первого раза сервис оказался недоступен, это может быть связано с закрытым портом 9000, чтобы его открыть напишем небольшой плейбук:
+```
+nano openport.yml
+---
+- name: Install firewalld
+  hosts: sonarqube
+  become: true
+  tasks:
+    - name: Install
+      ansible.builtin.yum:
+        name: firewalld
+        state: present
+    - name: Start firewalld
+      ansible.builtin.service:
+        name: firewalld
+        state: started
+        enabled: true
+    - name: Enable 9000
+      ansible.posix.firewalld:
+        zone: public
+        port: 9000/tcp
+        permanent: true
+        state: enabled
+```
+Проверяем и запускаем:
+```
+ansible-lint openport.yml
+ansible-playbook openport.yml -i inventory/cicd/hosts.yml
+```
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/sonar5.png)
+
+
 6. Зайдите под admin\admin, поменяйте пароль на свой.
 7.  Проверьте готовность Nexus через [бразуер](http://localhost:8081).
 8. Подключитесь под admin\admin123, поменяйте пароль, сохраните анонимный доступ.
