@@ -159,11 +159,36 @@ wget https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bi
 ```
 tar -xvf apache-maven-3.9.6-bin.tar.gz
 rm apache-maven-3.9.6-bin.tar.gz
-ln -s /usr/local/maven/apache-maven-3.9.6/bin/mvn /usr/bin/mvn
+ln -s /root/CICD/09-ci-03-cicd/mvn/apache-maven-3.9.6/bin/mvn /usr/bin/mvn
 ```
 
 3. Удалите из `apache-maven-<version>/conf/settings.xml` упоминание о правиле, отвергающем HTTP- соединение — раздел mirrors —> id: my-repository-http-unblocker.
+
+Удален код
+```
+    <mirror>
+      <id>maven-default-http-blocker</id>
+      <mirrorOf>external:http:*</mirrorOf>
+      <name>Pseudo repository to mirror external repositories initially using HTTP.</name>
+      <url>http://0.0.0.0/</url>
+      <blocked>true</blocked>
+    </mirror>
+```
+
+
 4. Проверьте `mvn --version`.
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/mvn2.png)
+
+Корректно maven заработал только после установки java актуальной версии
+
+```
+wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.rpm
+dnf install ./jdk-17_linux-x64_bin.rpm
+ls -1 /usr/lib/jvm/jre-openjdk/
+```
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/mvn3.png)
+
 5. Заберите директорию [mvn](./mvn) с pom.
 
 ### Основная часть
