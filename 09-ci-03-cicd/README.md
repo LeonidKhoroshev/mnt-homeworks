@@ -142,7 +142,7 @@ ansible-playbook openport.yml -i inventory/cicd/hosts.yml
 
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/sonar8.png)
 
-4. В ответе пришлите файл `maven-metadata.xml` для этого артефекта.
+4. В ответе пришлите файл [maven-metadata.xml](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/maven-metadata.xml) для этого артефекта.
 
 ### Знакомство с Maven
 
