@@ -149,7 +149,19 @@ ansible-playbook openport.yml -i inventory/cicd/hosts.yml
 ### Подготовка к выполнению
 
 1. Скачайте дистрибутив с [maven](https://maven.apache.org/download.cgi).
+
+```
+wget https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
+```
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/mvn1.png)
+
 2. Разархивируйте, сделайте так, чтобы binary был доступен через вызов в shell (или поменяйте переменную PATH, или любой другой, удобный вам способ).
+```
+tar -xvf apache-maven-3.9.6-bin.tar.gz
+rm apache-maven-3.9.6-bin.tar.gz
+ln -s /usr/local/maven/apache-maven-3.9.6/bin/mvn /usr/bin/mvn
+```
+
 3. Удалите из `apache-maven-<version>/conf/settings.xml` упоминание о правиле, отвергающем HTTP- соединение — раздел mirrors —> id: my-repository-http-unblocker.
 4. Проверьте `mvn --version`.
 5. Заберите директорию [mvn](./mvn) с pom.
