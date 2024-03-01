@@ -106,7 +106,9 @@ ansible-playbook openport.yml -i inventory/cicd/hosts.yml
 
 6. Зайдите под admin\admin, поменяйте пароль на свой.
 7.  Проверьте готовность Nexus через [бразуер](http://localhost:8081).
+
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/sonar7.png)
+
 8. Подключитесь под admin\admin123, поменяйте пароль, сохраните анонимный доступ.
 
 ## Знакомоство с SonarQube
