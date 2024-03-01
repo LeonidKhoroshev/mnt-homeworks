@@ -139,6 +139,9 @@ ansible-playbook openport.yml -i inventory/cicd/hosts.yml
    
 2. В него же загрузите такой же артефакт, но с version: 8_102.
 3. Проверьте, что все файлы загрузились успешно.
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/sonar8.png)
+
 4. В ответе пришлите файл `maven-metadata.xml` для этого артефекта.
 
 ### Знакомство с Maven
