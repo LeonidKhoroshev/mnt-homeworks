@@ -228,11 +228,13 @@ ls -1 /usr/lib/jvm/jre-openjdk/
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/mvn4.png)
 
 3. Проверьте директорию `~/.m2/repository/`, найдите ваш артефакт.
+
 ```
 ls -la ~/.m2/repository/netology/java/8_282
 ```
+
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/mvn5.png)
 
-4. В ответе пришлите исправленный файл [pom.xml]().
+4. В ответе пришлите исправленный файл [pom.xml](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/mvn/pom.xml).
 
 ---
