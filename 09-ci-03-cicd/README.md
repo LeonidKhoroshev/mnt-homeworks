@@ -195,7 +195,7 @@ ls -1 /usr/lib/jvm/jre-openjdk/
 
 1. Поменяйте в `pom.xml` блок с зависимостями под ваш артефакт из первого пункта задания для Nexus (java с версией 8_282).
 
-В данном файле указан наш репозиторий  `http://158.160.121.165:8081/repository/maven-public/` и актуальная версия артефакта `8_282`
+В данном файле указан наш репозиторий  `http://158.160.121.165:8081/repository/maven-public/` актуальная версия артефакта `8_282`, а также раскомментирован блок с зависимостями.
 ```
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -212,25 +212,27 @@ ls -1 /usr/lib/jvm/jre-openjdk/
     </repository>
   </repositories>
   <dependencies>
-<!--     <dependency>
+     <dependency>
       <groupId>netology</groupId>
       <artifactId>java</artifactId>
       <version>8_282</version>
       <classifier>distrib</classifier>
       <type>.gz</type>
-    </dependency> -->
+    </dependency> 
   </dependencies>
 </project>
 ```
 
 2. Запустите команду `mvn package` в директории с `pom.xml`, ожидайте успешного окончания.
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/mvn4.png)
+
 3. Проверьте директорию `~/.m2/repository/`, найдите ваш артефакт.
-4. В ответе пришлите исправленный файл `pom.xml`.
+```
+ls -la ~/.m2/repository/netology/java/8_282
+```
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/mvn5.png)
 
----
-
-### Как оформить решение задания
-
-Выполненное домашнее задание пришлите в виде ссылки на .md-файл в вашем репозитории.
+4. В ответе пришлите исправленный файл [pom.xml]().
 
 ---
