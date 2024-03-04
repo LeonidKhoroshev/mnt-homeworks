@@ -120,7 +120,18 @@ ansible-playbook openport.yml -i inventory/cicd/hosts.yml
 
 1. Создайте новый проект, название произвольное.
 2. Скачайте пакет sonar-scanner, который вам предлагает скачать SonarQube.
+```
+wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip?_gl=1*11cjh35*_gcl_au*OTI0NDY3NTYzLjE3MDkyMzU5NTE.*_ga*MTkxMTgwNzA2Ni4xNzA5MjM1OTUx*_ga_9JZ0GZ5TC6*MTcwOTU0Mzk1OC41LjEuMTcwOTU1MDU3Mi4yMy4wLjA.
+unzip  
+unzip sonar-scanner-cli-5.0.1.3006-linux.zip?_gl=1*11cjh35*_gcl_au*OTI0NDY3NTYzLjE3MDkyMzU5NTE.*_ga*MTkxMTgwNzA2Ni4xNzA5MjM1OTUx*_ga_9JZ0GZ5TC6*MTcwOTU0Mzk1OC41LjEuMTcwOTU1MDU3Mi4yMy4wLjA.
+rm sonar-scanner-cli-5.0.1.3006-linux.zip?_gl=1*11cjh35*_gcl_au*OTI0NDY3NTYzLjE3MDkyMzU5NTE.*_ga*MTkxMTgwNzA2Ni4xNzA5MjM1OTUx*_ga_9JZ0GZ5TC6*MTcwOTU0Mzk1OC41LjEuMTcwOTU1MDU3Mi4yMy4wLjA.
+```
+
 3. Сделайте так, чтобы binary был доступен через вызов в shell (или поменяйте переменную PATH, или любой другой, удобный вам способ).
+```
+
+```
+
 4. Проверьте `sonar-scanner --version`.
 5. Запустите анализатор против кода из директории [example](./example) с дополнительным ключом `-Dsonar.coverage.exclusions=fail.py`.
 6. Посмотрите результат в интерфейсе.
