@@ -122,22 +122,54 @@ ansible-playbook openport.yml -i inventory/cicd/hosts.yml
 2. Скачайте пакет sonar-scanner, который вам предлагает скачать SonarQube.
 ```
 wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip?_gl=1*11cjh35*_gcl_au*OTI0NDY3NTYzLjE3MDkyMzU5NTE.*_ga*MTkxMTgwNzA2Ni4xNzA5MjM1OTUx*_ga_9JZ0GZ5TC6*MTcwOTU0Mzk1OC41LjEuMTcwOTU1MDU3Mi4yMy4wLjA.
-unzip  
 unzip sonar-scanner-cli-5.0.1.3006-linux.zip?_gl=1*11cjh35*_gcl_au*OTI0NDY3NTYzLjE3MDkyMzU5NTE.*_ga*MTkxMTgwNzA2Ni4xNzA5MjM1OTUx*_ga_9JZ0GZ5TC6*MTcwOTU0Mzk1OC41LjEuMTcwOTU1MDU3Mi4yMy4wLjA.
 rm sonar-scanner-cli-5.0.1.3006-linux.zip?_gl=1*11cjh35*_gcl_au*OTI0NDY3NTYzLjE3MDkyMzU5NTE.*_ga*MTkxMTgwNzA2Ni4xNzA5MjM1OTUx*_ga_9JZ0GZ5TC6*MTcwOTU0Mzk1OC41LjEuMTcwOTU1MDU3Mi4yMy4wLjA.
 ```
 
 3. Сделайте так, чтобы binary был доступен через вызов в shell (или поменяйте переменную PATH, или любой другой, удобный вам способ).
 ```
-
+cd /usr/local/sonar-scanner/bin
+export PATH=$PATH:$(pwd)
 ```
 
 4. Проверьте `sonar-scanner --version`.
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/sonar9.png)
+
 5. Запустите анализатор против кода из директории [example](./example) с дополнительным ключом `-Dsonar.coverage.exclusions=fail.py`.
+```
+sonar-scanner \
+  -Dsonar.projectKey=Example \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://192.168.1.169:9000 \
+  -Dsonar.token=sqp_a917f39075303a7155778d433266fffe09953e42
+  -Dsonar.coverage.exclusions=fail.py
+```
+
 6. Посмотрите результат в интерфейсе.
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/sonar10.png)
+
 7. Исправьте ошибки, которые он выявил, включая warnings.
+```
+def increment(index):
+    index += 1
+    return index
+def get_square(numb):
+    return numb*numb
+def print_numb(numb):
+    print("Number is {}".format(numb))
+
+
+index = 0
+while (index < 10):
+    index = increment(index)
+    print(get_square(index))
+```
 8. Запустите анализатор повторно — проверьте, что QG пройдены успешно.
 9. Сделайте скриншот успешного прохождения анализа, приложите к решению ДЗ.
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/sonar11.png)
 
 ## Знакомство с Nexus
 
