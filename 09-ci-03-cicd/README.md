@@ -104,6 +104,9 @@ ansible-playbook openport.yml -i inventory/cicd/hosts.yml
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/sonar5.png)
 
 
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/screenshots/sonar5.png)
+
+
 6. Зайдите под admin\admin, поменяйте пароль на свой.
 7.  Проверьте готовность Nexus через [бразуер](http://localhost:8081).
 
