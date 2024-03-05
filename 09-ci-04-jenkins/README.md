@@ -45,6 +45,11 @@ all:
     ansible_user: leo
 
 ```
+Копируем ключ и запускаем playbook
+```
+cp /root/.ssh/id_rsa.pub files/id_rsa.pub
+ansible-playbook site.yml -i inventory/cicd/hosts.yml
+```
 
 3. Запустить и проверить работоспособность.
 4. Сделать первоначальную настройку.
