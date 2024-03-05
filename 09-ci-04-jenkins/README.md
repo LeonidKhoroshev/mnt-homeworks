@@ -51,10 +51,11 @@ cp /root/.ssh/id_rsa.pub files/id_rsa.pub
 ansible-playbook site.yml -i inventory/cicd/hosts.yml
 ```
 
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen2.png)
+
 3. Запустить и проверить работоспособность.
 4. Сделать первоначальную настройку.
 
-![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen2.png)
 
 ## Основная часть
 
