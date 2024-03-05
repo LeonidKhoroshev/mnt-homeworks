@@ -54,6 +54,8 @@ ansible-playbook site.yml -i inventory/cicd/hosts.yml
 3. Запустить и проверить работоспособность.
 4. Сделать первоначальную настройку.
 
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen2.png)
+
 ## Основная часть
 
 1. Сделать Freestyle Job, который будет запускать `molecule test` из любого вашего репозитория с ролью.
