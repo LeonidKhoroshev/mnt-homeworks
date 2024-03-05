@@ -20,6 +20,32 @@ terraform apply
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen1.png)
 
 2. Установить Jenkins при помощи playbook.
+
+Корректируем inventory, указав пользователя, созданного через cloud-init и ip адреса.
+
+```
+---
+all:
+  hosts:
+    jenkins-master-01:
+      ansible_host: 158.160.51.50
+    jenkins-agent-01:
+      ansible_host: 158.160.62.59
+  children:
+    jenkins:
+      children:
+        jenkins_masters:
+          hosts:
+            jenkins-master-01:
+        jenkins_agents:
+          hosts:
+              jenkins-agent-01:
+  vars:
+    ansible_connection_type: paramiko
+    ansible_user: leo
+
+```
+
 3. Запустить и проверить работоспособность.
 4. Сделать первоначальную настройку.
 
