@@ -1,8 +1,24 @@
-# Домашнее задание к занятию 10 «Jenkins»
+# Домашнее задание к занятию 10 «Jenkins» - Хорошев Леонид
 
 ## Подготовка к выполнению
 
 1. Создать два VM: для jenkins-master и jenkins-agent.
+
+Для создания требуемой инфраструктуры воспользуемся кодом terraform, подготовленным в рамках выполнения предыдущих домашних заданий. 
+```
+mkdir 09-ci-04-jenkins/infrastructure/terraform
+cd 09-ci-04-jenkins/infrastructure/terraform
+git init
+git pull https://github.com/LeonidKhoroshev/terraform-team
+cp ~/CICD/09-ci-03-cicd/infrastructure/terraform/personal.auto.tfvars ~/CICD/09-ci-04-jenkins/infrastructure/terraform/personal.auto.tfvars
+terraform init
+terraform plan
+terraform apply
+```
+Скопируем наш проект terraform из репозитория `https://github.com/LeonidKhoroshev/terraform-team`, добавим файл `personal.auto.tfvars` из предыдущей домашней работы, откорректируем переменные (требуется для корректного названия VM) и поднимем инфраструктуру.
+
+
+
 2. Установить Jenkins при помощи playbook.
 3. Запустить и проверить работоспособность.
 4. Сделать первоначальную настройку.
