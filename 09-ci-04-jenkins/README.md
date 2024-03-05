@@ -17,7 +17,7 @@ terraform apply
 ```
 Скопируем наш проект terraform из репозитория `https://github.com/LeonidKhoroshev/terraform-team`, добавим файл `personal.auto.tfvars` из предыдущей домашней работы, откорректируем переменные (требуется для корректного названия VM) и поднимем инфраструктуру.
 
-
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen1.png)
 
 2. Установить Jenkins при помощи playbook.
 3. Запустить и проверить работоспособность.
