@@ -54,6 +54,9 @@ ansible-playbook site.yml -i inventory/cicd/hosts.yml
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen2.png)
 
 3. Запустить и проверить работоспособность.
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen3.png)
+
 4. Сделать первоначальную настройку.
 
 
