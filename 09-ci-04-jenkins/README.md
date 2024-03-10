@@ -59,6 +59,15 @@ ansible-playbook site.yml -i inventory/cicd/hosts.yml
 
 4. Сделать первоначальную настройку.
 
+К сожалению, подключить вторую ноду методом, предложенным в видеоуроке не получилось, так как установленная версия Jenkins отличается от рассматриваемой на занятии. Выбираем аутентификацию по SSH.
+
+Подключаемся к агенту и создаем новый ключ
+```
+ssh leo@51.250.65.72
+ssh-keygen -t rsa -C "Jenkins agent key"
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorizad_keys
+chmod 600 ~/.ssh/authorized_keys
+```
 
 ## Основная часть
 
