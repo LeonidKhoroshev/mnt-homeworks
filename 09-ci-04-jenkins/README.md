@@ -68,6 +68,8 @@ ssh-keygen -t rsa -C "Jenkins agent key"
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorizad_keys
 chmod 600 ~/.ssh/authorized_keys
 ```
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen4.png)
+
 
 ## Основная часть
 
