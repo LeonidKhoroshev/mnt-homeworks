@@ -74,6 +74,16 @@ chmod 600 ~/.ssh/authorized_keys
 ## Основная часть
 
 1. Сделать Freestyle Job, который будет запускать `molecule test` из любого вашего репозитория с ролью.
+
+Выполним job, состоящий из коммнад shell следующего содержания (в качестве репозитория возьмем vector, созданный в рамках выполнения домашних заданий предыдущегот учебного модуля):
+```
+git init
+git pull https://github.com/LeonidKhoroshev/vector.git molecule
+molecule test
+```
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen5.png)
+
 2. Сделать Declarative Pipeline Job, который будет запускать `molecule test` из любого вашего репозитория с ролью.
 3. Перенести Declarative Pipeline в репозиторий в файл `Jenkinsfile`.
 4. Создать Multibranch Pipeline на запуск `Jenkinsfile` из репозитория.
