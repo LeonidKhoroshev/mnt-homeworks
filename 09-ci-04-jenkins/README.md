@@ -59,17 +59,8 @@ ansible-playbook site.yml -i inventory/cicd/hosts.yml
 
 4. Сделать первоначальную настройку.
 
-К сожалению, подключить вторую ноду методом, предложенным в видеоуроке не получилось, так как установленная версия Jenkins отличается от рассматриваемой на занятии. Выбираем аутентификацию по SSH.
-
-Подключаемся к агенту и создаем новый ключ
-```
-ssh leo@51.250.65.72
-ssh-keygen -t rsa -C "Jenkins agent key"
-cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorizad_keys
-chmod 600 ~/.ssh/authorized_keys
-```
-![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen4.png)
-
+Первоначальная настройка выполнена аналогично материалов лекции, кроме одного - в моей версии Jenkins потребовалось в настройках дополнительно обеспечить возможность подключения агента в настройках безопасности:
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen5.png)
 
 ## Основная часть
 
@@ -82,7 +73,7 @@ git pull https://github.com/LeonidKhoroshev/vector.git molecule
 molecule test
 ```
 
-![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen5.png)
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen6.png)
 
 2. Сделать Declarative Pipeline Job, который будет запускать `molecule test` из любого вашего репозитория с ролью.
 3. Перенести Declarative Pipeline в репозиторий в файл `Jenkinsfile`.
