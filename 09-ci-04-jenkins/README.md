@@ -83,12 +83,42 @@ fatal: [localhost]: FAILED! => {"msg": "The conditional check 'platforms.changed
 ```
 То есть проблема в отсутвиии теста equalto. Ранее с такой проблемой мы сталкивались в рамках выполнения домашнего задания по теме «Тестирование roles». Для исправления ситуации обновляем версии ansible (до 2.16.2) и python ( до 3.10).
 
-
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen6.png)
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen7.png)
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen8.png)
+
 2. Сделать Declarative Pipeline Job, который будет запускать `molecule test` из любого вашего репозитория с ролью.
+
+Pipeline выполняем по образу и подобию Freestyle Job, c тем отличием, что вместо первого шага `git init`, мы удаляем содержимое рабочей директории и скачиваем репозиторий заново, так как в него могут быть внесены изменения. Ветка используется не `main`, а `molecule`, потому что по условиям домашних заданий из прошлого учебного модуля.
+```
+pipeline {
+    agent {
+        label 'ansible'
+    }
+    stages {
+        stage('Clear work dir') {
+            steps {
+                deleteDir()
+            }
+        }
+        stage('Clone git repo') {
+            steps {
+                dir('vector-role') {
+                git branch: 'molecule', url: 'https://github.com/LeonidKhoroshev/vector.git'
+                }
+            }
+        }
+```
+Проверяем результат:
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen9.png)
+
+В этот раз сборка прошла с первого раза, так как в самом коде в репозитории и в логике проверки мы ничего не меняли и не добавляли никаких дополнительных тестов.
+
 3. Перенести Declarative Pipeline в репозиторий в файл `Jenkinsfile`.
+
+
+
+
 4. Создать Multibranch Pipeline на запуск `Jenkinsfile` из репозитория.
 5. Создать Scripted Pipeline, наполнить его скриптом из [pipeline](./pipeline).
 6. Внести необходимые изменения, чтобы Pipeline запускал `ansible-playbook` без флагов `--check --diff`, если не установлен параметр при запуске джобы (prod_run = True). По умолчанию параметр имеет значение False и запускает прогон с флагами `--check --diff`.
