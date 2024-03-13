@@ -116,10 +116,19 @@ pipeline {
 
 3. Перенести Declarative Pipeline в репозиторий в файл `Jenkinsfile`.
 
-
-
+Для удобства использования Pipeline создадим в Git отдельный репозиторий [Jenkins], где разместим наш [Jenkinsfile](https://github.com/LeonidKhoroshev/Jenkins/blob/main/Jenkinsfile)
 
 4. Создать Multibranch Pipeline на запуск `Jenkinsfile` из репозитория.
+
+Настройки нашего Pipeline (аналогично лекции):
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen10.png)
+
+Результат сборки:
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen11.png)
+
+Важно отметить, что при  создании Multibranch Pipeline Jenkins автоматически запрашивает в `git` ветку `master`. В случае, если в репозитории отсутствуют созданные пользователем ветки, необходимо менять `master` на `main`, так как именно так называется ветка, создаваемая по умолчанию в репозиториях на `github`. 
+
 5. Создать Scripted Pipeline, наполнить его скриптом из [pipeline](./pipeline).
 6. Внести необходимые изменения, чтобы Pipeline запускал `ansible-playbook` без флагов `--check --diff`, если не установлен параметр при запуске джобы (prod_run = True). По умолчанию параметр имеет значение False и запускает прогон с флагами `--check --diff`.
 7. Проверить работоспособность, исправить ошибки, исправленный Pipeline вложить в репозиторий в файл `ScriptedJenkinsfile`.
