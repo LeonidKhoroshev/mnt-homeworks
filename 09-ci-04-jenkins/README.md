@@ -72,6 +72,17 @@ git init
 git pull https://github.com/LeonidKhoroshev/vector.git molecule
 molecule test
 ```
+Сборка завершилась неудачно:
+```
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE
+```
+Причина:
+```
+fatal: [localhost]: FAILED! => {"msg": "The conditional check 'platforms.changed or docker_images.results | map(attribute='images') | select('equalto', []) | list | count >= 0' failed. The error was: no test named 'equalto'\n\nThe error appears to be in '/usr/local/lib/python3.6/site-packages/molecule_docker/playbooks/create.yml': line 65, column 7, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n    - name: Build an Ansible compatible image (new)  # noqa: no-handler\n      ^ here\n"}
+```
+То есть проблема в отсутвиии теста equalto. Ранее с такой проблемой мы сталкивались в рамках выполнения домашнего задания по теме «Тестирование roles». Для исправления ситуации обновляем версии ansible (до 2.16.2) и python ( до 3.10).
+
 
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen6.png)
 
