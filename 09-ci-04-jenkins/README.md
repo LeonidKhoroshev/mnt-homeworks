@@ -85,6 +85,7 @@ fatal: [localhost]: FAILED! => {"msg": "The conditional check 'platforms.changed
 
 
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen6.png)
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen7.png)
 
 2. Сделать Declarative Pipeline Job, который будет запускать `molecule test` из любого вашего репозитория с ролью.
 3. Перенести Declarative Pipeline в репозиторий в файл `Jenkinsfile`.
