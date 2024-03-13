@@ -70,7 +70,7 @@ ansible-playbook site.yml -i inventory/cicd/hosts.yml
 ```
 git init
 git pull https://github.com/LeonidKhoroshev/vector.git molecule
-molecule test
+/home/jenkins/.local/bin/molecule test
 ```
 Сборка завершилась неудачно:
 ```
