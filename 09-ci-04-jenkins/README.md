@@ -116,7 +116,7 @@ pipeline {
 
 3. Перенести Declarative Pipeline в репозиторий в файл `Jenkinsfile`.
 
-Для удобства использования Pipeline создадим в Git отдельный репозиторий [Jenkins], где разместим наш [Jenkinsfile](https://github.com/LeonidKhoroshev/Jenkins/blob/main/Jenkinsfile)
+Для удобства использования Pipeline создадим в Git отдельный репозиторий [Jenkins](https://github.com/LeonidKhoroshev/Jenkins), где разместим наш [Jenkinsfile](https://github.com/LeonidKhoroshev/Jenkins/blob/main/Jenkinsfile)
 
 4. Создать Multibranch Pipeline на запуск `Jenkinsfile` из репозитория.
 
