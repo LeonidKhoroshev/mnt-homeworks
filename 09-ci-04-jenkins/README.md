@@ -62,6 +62,12 @@ ansible-playbook site.yml -i inventory/cicd/hosts.yml
 Первоначальная настройка выполнена аналогично материалов лекции, кроме одного - в моей версии Jenkins потребовалось в настройках дополнительно обеспечить возможность подключения агента в настройках безопасности:
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen5.png)
 
+Подключаем агента к мастеру, для чего вводим в терминале агента следуюшее:
+```
+curl -sO http://158.160.96.132:8080/jnlpJars/agent.jar
+java -jar agent.jar -url http://158.160.96.132:8080/ -secret 30a7080259c46d590e8fcba2df01fadb8701cd6da5bec20cacc7df209054de92 -name agent -workDir "/opt/jenkins_agent/"
+```
+
 ## Основная часть
 
 1. Сделать Freestyle Job, который будет запускать `molecule test` из любого вашего репозитория с ролью.
