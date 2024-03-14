@@ -139,22 +139,57 @@ pipeline {
 
 5. Создать Scripted Pipeline, наполнить его скриптом из [pipeline](./pipeline).
 
+Копируем скрипт в Pipeline:
 
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen12.png)
+
+
+Первый запуск прошел неуспешно, причина:
+```
+Caused by: hudson.plugins.git.GitException: Command "git fetch --tags --progress git@github.com:aragastmatb/example-playbook.git +refs/heads/*:refs/remotes/origin/*" returned status code 128:
+stdout: 
+stderr: Warning: Permanently added the ECDSA host key for IP address '140.82.121.4' to the list of known hosts.
+Permission denied (publickey).
+fatal: Could not read from remote repository.
+```
+
+Меняем скрипт, чтобы доступ к репозиторию был как в pipine из предыдущего задания (то есть по протоколу https):
+```
+git url: 'https://github.com/aragastmatb/example-playbook.git'
+```
+
+Cборка прошла успешно:
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/screenshots/jen13.png)
 
 6. Внести необходимые изменения, чтобы Pipeline запускал `ansible-playbook` без флагов `--check --diff`, если не установлен параметр при запуске джобы (prod_run = True). По умолчанию параметр имеет значение False и запускает прогон с флагами `--check --diff`.
-7. Проверить работоспособность, исправить ошибки, исправленный Pipeline вложить в репозиторий в файл `ScriptedJenkinsfile`.
+
+Полный код скрипта:
+```
+node("linux"){
+    stage("Git checkout"){
+        git url: 'https://github.com/aragastmatb/example-playbook.git'
+    }
+    stage("Sample define secret_check"){
+        secret_check=true
+    }
+    stage("Run playbook"){
+        if (secret_check){
+            sh 'ansible-playbook site.yml -i inventory/prod.yml'
+        }
+        else{
+            echo 'need more action'
+        }
+        
+    }
+}
+```
+
+7. Проверить работоспособность, исправить ошибки, исправленный Pipeline вложить в репозиторий в файл [ScriptedJenkinsfile](https://github.com/LeonidKhoroshev/Jenkins/blob/main/ScriptedJenkinsfile)
+
 8. Отправить ссылку на репозиторий с ролью и Declarative Pipeline и Scripted Pipeline.
-9. Сопроводите процесс настройки скриншотами для каждого пункта задания!!
 
-## Необязательная часть
+[Репозиторий Jenkins](https://github.com/LeonidKhoroshev/Jenkins/tree/main)
 
-1. Создать скрипт на groovy, который будет собирать все Job, завершившиеся хотя бы раз неуспешно. Добавить скрипт в репозиторий с решением и названием `AllJobFailure.groovy`.
-2. Создать Scripted Pipeline так, чтобы он мог сначала запустить через Yandex Cloud CLI необходимое количество инстансов, прописать их в инвентори плейбука и после этого запускать плейбук. Мы должны при нажатии кнопки получить готовую к использованию систему.
-
----
-
-### Как оформить решение задания
-
-Выполненное домашнее задание пришлите в виде ссылки на .md-файл в вашем репозитории.
 
 ---
