@@ -81,4 +81,5 @@ git pull https://github.com/influxdata/sandbox
 docker-compose up
 ```
 
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-01-base/screenshots/mon1.png)
 
