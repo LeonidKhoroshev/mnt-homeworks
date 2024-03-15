@@ -70,4 +70,15 @@ Zabbix -  гибридная модель;
 VictoriaMetrics -  гибридная модель;
 Nagios - push-модель.
 
+#### 7. Склонируйте себе репозиторий и запустите TICK-стэк, используя технологии docker и docker-compose. В виде решения на это упражнение приведите скриншот веб-интерфейса ПО chronograf (http://localhost:8888).
+P.S.: если при запуске некоторые контейнеры будут падать с ошибкой - проставьте им режим Z, например ./data:/var/lib:Z
+
+```
+mkdir monitoring
+cd monitoring
+git init
+git pull https://github.com/influxdata/sandbox
+docker-compose up
+```
+
 
