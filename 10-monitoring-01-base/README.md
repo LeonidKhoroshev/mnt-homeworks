@@ -82,3 +82,11 @@ docker-compose up
 
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-01-base/screenshots/mon1.png)
 
+
+#### 8. Перейдите в веб-интерфейс Chronograf (http://localhost:8888) и откройте вкладку Data explorer:
+- Нажмите на кнопку Add a query
+- Изучите вывод интерфейса и выберите БД telegraf.autogen
+- В measurments выберите cpu->host->telegraf-getting-started, а в fields выберите usage_system. Внизу появится график утилизации cpu.
+- Вверху вы можете увидеть запрос, аналогичный SQL-синтаксису. Поэкспериментируйте с запросом, попробуйте изменить группировку и интервал наблюдений.
+
+Для выполнения задания приведите скриншот с отображением метрик утилизации cpu из веб-интерфейса.
