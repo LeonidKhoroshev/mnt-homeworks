@@ -80,7 +80,40 @@ git pull https://github.com/influxdata/sandbox
 docker-compose up
 ```
 
-![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-01-base/screenshots/mon1.png)
+Стек поднядся не с первого раза, в docker-compose.yml внесен ряд дополнений:
+
+настройки inflixdb:
+```
+volumes:
+# Mount for influxdb data directory
+   - ./influxdb/data:/var/lib/influxdb:z
+# Mount for influxdb configuration
+   - ./influxdb/config/influxdb.conf:/etc/influxdb/influxdb.conf:z
+```
+
+настройки telegraf:
+```
+volumes:
+# Mount for telegraf configuration
+   - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:Z
+# Mount for Docker API access
+   - /var/run/docker.sock:/var/run/docker.sock:Z
+```
+
+Также были выданы дополнительные права файлу `docker.sock`
+```
+chmod 777 /var/run/docker.sock
+```
+
+Проверяем запущены ли контейнеры:
+```
+docker ps -a
+```
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-01-base/screenshots/mon4.png)
+
+Веб-интерфейс:
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-01-base/screenshots/mon3.png)
 
 
 #### 8. Перейдите в веб-интерфейс Chronograf (http://localhost:8888) и откройте вкладку Data explorer:
@@ -90,3 +123,10 @@ docker-compose up
 - Вверху вы можете увидеть запрос, аналогичный SQL-синтаксису. Поэкспериментируйте с запросом, попробуйте изменить группировку и интервал наблюдений.
 
 Для выполнения задания приведите скриншот с отображением метрик утилизации cpu из веб-интерфейса.
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-01-base/screenshots/mon2.png)
+
+Также данная информация теперь доступна и на стартовой странице
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-01-base/screenshots/mon5.png)
+
