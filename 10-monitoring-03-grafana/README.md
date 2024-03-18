@@ -76,7 +76,7 @@ node_memory_MemFree_bytes{job='nodeexporter'}
 ```
 - количество места на файловой системе.
 ```
-node_filesystem_avail_bytes{device="/dev/vda2", fstype="xfs", instance="nodeexporter:9100", job="nodeexporter", mountpoint="/"}
+node_filesystem_avail_bytes{instance="nodeexporter:9100", job="nodeexporter", mountpoint="/"}
 ```
 Получившийся дашборд
 
