@@ -29,7 +29,7 @@ docker ps -a
 ```
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-03-grafana/screenshots/graf1.png)
 
-Дополнение - для корректного запуска `prometheus` и `nodeexporter` в файл `docker-compose.yml` внесены изменения, а именно проуинуты порты для данных сервисов:
+Дополнение - для корректного запуска `prometheus` и `nodeexporter` в файл `docker-compose.yml` внесены изменения, а именно прокинуты порты для данных сервисов:
 prometheus:
 ```
 ports:
@@ -47,6 +47,7 @@ ports:
 
 3. Подключите поднятый вами prometheus, как источник данных.
 
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-03-grafana/screenshots/graf3.png)
 
 
 4. Решение домашнего задания — скриншот веб-интерфейса grafana со списком подключенных Datasource.
