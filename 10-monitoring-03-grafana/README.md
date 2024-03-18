@@ -27,9 +27,16 @@ cd 10-monitoring-03-grafana/help
 docker-compose up
 docker ps -a
 ```
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-03-grafana/screenshots/graf1.png)
 
 2. Зайдите в веб-интерфейс grafana, используя авторизационные данные, указанные в манифесте docker-compose.
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-03-grafana/screenshots/graf2.png)
+
 3. Подключите поднятый вами prometheus, как источник данных.
+
+
+
 4. Решение домашнего задания — скриншот веб-интерфейса grafana со списком подключенных Datasource.
 
 ## Задание 2
