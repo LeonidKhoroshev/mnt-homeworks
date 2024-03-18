@@ -50,8 +50,6 @@ ports:
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-03-grafana/screenshots/graf3.png)
 
 
-4. Решение домашнего задания — скриншот веб-интерфейса grafana со списком подключенных Datasource.
-
 ## Задание 2
 
 Изучите самостоятельно ресурсы:
@@ -63,11 +61,26 @@ ports:
 Создайте Dashboard и в ней создайте Panels:
 
 - утилизация CPU для nodeexporter (в процентах, 100-idle);
-- CPULA 1/5/15;
+```
+avg without (cpu)(irate(node_cpu_seconds_total{job="nodeexporter",mode="idle"}[1m]))
+```
+- CPULA 1/5/15 (CPU load average за 1, 5 и 15 минут);
+```
+node_load1{job="nodeexporter"}
+node_load5{job="nodeexporter"}
+node_load15{job="nodeexporter"}
+```
 - количество свободной оперативной памяти;
+```
+node_memory_MemFree_bytes{job='nodeexporter'}
+```
 - количество места на файловой системе.
+```
+node_filesystem_avail_bytes{device="/dev/vda2", fstype="xfs", instance="nodeexporter:9100", job="nodeexporter", mountpoint="/"}
+```
+Получившийся дашборд
 
-Для решения этого задания приведите promql-запросы для выдачи этих метрик, а также скриншот получившейся Dashboard.
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-03-grafana/screenshots/graf4.png)
 
 ## Задание 3
 
