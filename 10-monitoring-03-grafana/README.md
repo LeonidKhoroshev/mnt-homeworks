@@ -87,10 +87,16 @@ node_filesystem_avail_bytes{instance="nodeexporter:9100", job="nodeexporter", mo
 1. Создайте для каждой Dashboard подходящее правило alert — можно обратиться к первой лекции в блоке «Мониторинг».
 2. В качестве решения задания приведите скриншот вашей итоговой Dashboard.
 
+Для выполнения задания и удобства восприятия информации внешний вид панели был изменен изменен:
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-03-grafana/screenshots/graf5.png)
+
 ## Задание 4
 
 1. Сохраните ваш Dashboard.Для этого перейдите в настройки Dashboard, выберите в боковом меню «JSON MODEL». Далее скопируйте отображаемое json-содержимое в отдельный файл и сохраните его.
 2. В качестве решения задания приведите листинг этого файла.
+
+[Dachbord_1]()
 
 ---
 
