@@ -96,12 +96,6 @@ node_filesystem_avail_bytes{instance="nodeexporter:9100", job="nodeexporter", mo
 1. Сохраните ваш Dashboard.Для этого перейдите в настройки Dashboard, выберите в боковом меню «JSON MODEL». Далее скопируйте отображаемое json-содержимое в отдельный файл и сохраните его.
 2. В качестве решения задания приведите листинг этого файла.
 
-[Dachbord_1]()
-
----
-
-### Как оформить решение задания
-
-Выполненное домашнее задание пришлите в виде ссылки на .md-файл в вашем репозитории.
+[Dachbord_1](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-03-grafana/Dashbord_1.json)
 
 ---
