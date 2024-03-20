@@ -46,7 +46,13 @@ Filebeat следует сконфигурировать для отправки
 Результатом выполнения задания должны быть:
 
 - скриншот `docker ps` через 5 минут после старта всех контейнеров (их должно быть 5);
+
+![Alt_test](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-04-elk/screenshots/ELK1.png)
+
 - скриншот интерфейса kibana;
+
+![Alt_test](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-04-elk/screenshots/ELK2.png)
+
 - docker-compose манифест (если вы не использовали директорию help);
 - ваши yml-конфигурации для стека (если вы не использовали директорию help).
 
