@@ -63,7 +63,7 @@ Filebeat следует сконфигурировать для отправки
 Поскольку в нашем случае установлена версия `8.12.2`, в которой меню немного изменено, то index-pattern создается в меню [data-view](https://www.elastic.co/guide/en/kibana/8.12/data-views.html).
 
 ![Alt_test](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-04-elk/screenshots/ELK3.png)
-![Alt_test](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-04-elk/screenshots/ELK4.png)
+![Alt_test](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-04-elk/screenshots/ELK6.png)
 
 
 Перейдите в меню просмотра логов в kibana (Discover) и самостоятельно изучите, как отображаются логи и как производить поиск по логам.
