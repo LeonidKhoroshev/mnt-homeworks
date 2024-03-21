@@ -62,17 +62,15 @@ Filebeat следует сконфигурировать для отправки
 
 Поскольку в нашем случае установлена версия `8.12.2`, в которой меню немного изменено, то index-pattern создается в меню [data-view](https://www.elastic.co/guide/en/kibana/8.12/data-views.html).
 
+![Alt_test](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-04-elk/screenshots/ELK3.png)
+![Alt_test](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-04-elk/screenshots/ELK4.png)
+
+
 Перейдите в меню просмотра логов в kibana (Discover) и самостоятельно изучите, как отображаются логи и как производить поиск по логам.
+
+![Alt_test](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-04-elk/screenshots/ELK5.png)
 
 В манифесте директории help также приведенно dummy-приложение, которое генерирует рандомные события в stdout-контейнера.
 Эти логи должны порождать индекс logstash-* в elasticsearch. Если этого индекса нет — воспользуйтесь советами и источниками из раздела «Дополнительные ссылки» этого задания.
  
 ---
-
-### Как оформить решение задания
-
-Выполненное домашнее задание пришлите в виде ссылки на .md-файл в вашем репозитории.
-
----
-
- 
