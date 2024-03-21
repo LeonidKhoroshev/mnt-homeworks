@@ -60,7 +60,7 @@ Filebeat следует сконфигурировать для отправки
 
 Перейдите в меню [создания index-patterns  в kibana](http://localhost:5601/app/management/kibana/indexPatterns/create) и создайте несколько index-patterns из имеющихся.
 
-Поскольку в нашем случае установлена версия `8.12.2`, в которой меню немного изменено, то index-pattern создается в меню [data-view](https://www.elastic.co/guide/en/kibana/8.12/dataviews.html).
+Поскольку в нашем случае установлена версия `8.12.2`, в которой меню немного изменено, то index-pattern создается в меню [data-view](https://www.elastic.co/guide/en/kibana/8.12/data-views.html).
 
 Перейдите в меню просмотра логов в kibana (Discover) и самостоятельно изучите, как отображаются логи и как производить поиск по логам.
 
