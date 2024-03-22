@@ -20,6 +20,8 @@
 
 5. Сделайте fork [репозитория](https://github.com/aragastmatb/example-teamcity).
 
+[Fork репозитория example-teamcity](https://github.com/LeonidKhoroshev/example-teamcity)
+
 6. Создайте VM (2CPU4RAM) и запустите [playbook](./infrastructure).
 
 Для запуска плейбука в inventory-файле прописаны ip и имя пользователя ВМ `nexus`.
