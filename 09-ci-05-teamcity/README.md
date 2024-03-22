@@ -3,11 +3,50 @@
 ## Подготовка к выполнению
 
 1. В Yandex Cloud создайте новый инстанс (4CPU4RAM) на основе образа `jetbrains/teamcity-server`.
+
+В Yandex cloud созданы сразу `teamcity-server`, `teamcity-agent` и ВМ `nexus`.
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-05-teamcity/screenshots/team1.png)
+
 2. Дождитесь запуска teamcity, выполните первоначальную настройку.
+   
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-05-teamcity/screenshots/team4.png)
+
 3. Создайте ещё один инстанс (2CPU4RAM) на основе образа `jetbrains/teamcity-agent`. Пропишите к нему переменную окружения `SERVER_URL: "http://<teamcity_url>:8111"`.
+
 4. Авторизуйте агент.
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-05-teamcity/screenshots/team5.png)
+
 5. Сделайте fork [репозитория](https://github.com/aragastmatb/example-teamcity).
+
 6. Создайте VM (2CPU4RAM) и запустите [playbook](./infrastructure).
+
+Для запуска плейбука в inventory-файле прописаны ip и имя пользователя ВМ `nexus`.
+```
+---
+all:
+  hosts:
+    nexus-01:
+      ansible_host: 178.154.223.56
+  children:
+    nexus:
+      hosts:
+        nexus-01:
+  vars:
+    ansible_connection_type: paramiko
+    ansible_user: leo
+```
+
+Запускаем плейбук
+
+```
+ ansible-playbook site.yml -i inventory/cicd/hosts.yml
+```
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-05-teamcity/screenshots/team2.png)
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-05-teamcity/screenshots/team3.png)
+
+
 
 ## Основная часть
 
