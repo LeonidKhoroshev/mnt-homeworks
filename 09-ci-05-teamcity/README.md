@@ -99,6 +99,9 @@ all:
 
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-05-teamcity/screenshots/team13.png)
 
+После внесения изменений (в скриншоте) наша конфигурация доступна в [репозитории](https://github.com/LeonidKhoroshev/example-teamcity/tree/master/.teamcity/ExampleTeamcity).
+
+
 9. Создайте отдельную ветку `feature/add_reply` в репозитории.
 10. Напишите новый метод для класса Welcomer: метод должен возвращать произвольную реплику, содержащую слово `hunter`.
 11. Дополните тест для нового метода на поиск слова `hunter` в новой реплике.
