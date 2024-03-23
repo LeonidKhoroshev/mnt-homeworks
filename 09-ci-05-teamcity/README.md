@@ -96,6 +96,9 @@ all:
 
 
 8. Мигрируйте `build configuration` в репозиторий.
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-05-teamcity/screenshots/team13.png)
+
 9. Создайте отдельную ветку `feature/add_reply` в репозитории.
 10. Напишите новый метод для класса Welcomer: метод должен возвращать произвольную реплику, содержащую слово `hunter`.
 11. Дополните тест для нового метода на поиск слова `hunter` в новой реплике.
