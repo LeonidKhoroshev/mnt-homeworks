@@ -66,6 +66,7 @@ all:
 
 4. Поменяйте условия сборки: если сборка по ветке `master`, то должен происходит `mvn clean deploy`, иначе `mvn clean test`.
 
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-05-teamcity/screenshots/team15.png)
 
 5. Для deploy будет необходимо загрузить [settings.xml](./teamcity/settings.xml) в набор конфигураций maven у teamcity, предварительно записав туда креды для подключения к nexus.
 
@@ -105,21 +106,72 @@ all:
 
 
 9. Создайте отдельную ветку `feature/add_reply` в репозитории.
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-05-teamcity/screenshots/team16.png)
+
 10. Напишите новый метод для класса Welcomer: метод должен возвращать произвольную реплику, содержащую слово `hunter`.
+
+Реплику следующего содержания добавим в файл [Welcomer.java](https://github.com/LeonidKhoroshev/example-teamcity/blob/feature/add_reply/src/main/java/plaindoll/Welcomer.java):
+
+```
+ public String sayByeHunter(){
+                 return "Goodbye, hunter!";
+	}
+```
+
 11. Дополните тест для нового метода на поиск слова `hunter` в новой реплике.
+
+Тест прописываем в файле [WelcomerTest.java](https://github.com/LeonidKhoroshev/example-teamcity/blob/feature/add_reply/src/test/java/plaindoll/WelcomerTest.java)
+
+```
+ @Test
+	public void welcomersayByeHunter(){
+		assertThat(welcomer.sayByeHunter(), containsString("hunter"));
+	}
+```
+
 12. Сделайте push всех изменений в новую ветку репозитория.
+
+````
+git commit -m "hunter"
+git push https://github.com/LeonidKhoroshev/example-teamcity feature/add_reply
+```
+
 13. Убедитесь, что сборка самостоятельно запустилась, тесты прошли успешно.
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-05-teamcity/screenshots/team17.png)
+
 14. Внесите изменения из произвольной ветки `feature/add_reply` в `master` через `Merge`.
+
+```
+git checkout master
+git merge feature/add_reply
+git push https://github.com/LeonidKhoroshev/example-teamcity master
+```
+
 15. Убедитесь, что нет собранного артефакта в сборке по ветке `master`.
+
+В нашем хранилище nexus уже есть собранные артефакты по результатам выполнения п.7 данного домашнего задания
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-05-teamcity/screenshots/team18.png) 
+
+Чтобы не запутаться, можно изменить номер (версию) релиза, для этого отредактируем файл [pom.xml](https://github.com/LeonidKhoroshev/example-teamcity/blob/master/pom.xml)
+
+```
+<version>0.0.3</version>
+```
+
 16. Настройте конфигурацию так, чтобы она собирала `.jar` в артефакты сборки.
+
+В том же файле [pom.xml](https://github.com/LeonidKhoroshev/example-teamcity/blob/master/pom.xml) проверяем, что для артефакта задано требуемое расширение:
+```
+<packaging>jar</packaging>
+```
+
 17. Проведите повторную сборку мастера, убедитесь, что сбора прошла успешно и артефакты собраны.
+
+
 18. Проверьте, что конфигурация в репозитории содержит все настройки конфигурации из teamcity.
 19. В ответе пришлите ссылку на репозиторий.
-
----
-
-### Как оформить решение задания
-
-Выполненное домашнее задание пришлите в виде ссылки на .md-файл в вашем репозитории.
 
 ---
