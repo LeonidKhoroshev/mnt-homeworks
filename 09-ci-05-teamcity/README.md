@@ -1,4 +1,4 @@
-# Домашнее задание к занятию 11 «Teamcity» - Леонид Хорошев
+![2024-03-24_15-24-52](https://github.com/LeonidKhoroshev/mnt-homeworks/assets/114744186/3a2a782b-3216-4dda-b55b-9a41f3a8bcd7)# Домашнее задание к занятию 11 «Teamcity» - Леонид Хорошев
 
 ## Подготовка к выполнению
 
@@ -170,8 +170,15 @@ git push https://github.com/LeonidKhoroshev/example-teamcity master
 
 17. Проведите повторную сборку мастера, убедитесь, что сбора прошла успешно и артефакты собраны.
 
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-05-teamcity/screenshots/team20.png) 
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-05-teamcity/screenshots/team19.png) 
 
-18. Проверьте, что конфигурация в репозитории содержит все настройки конфигурации из teamcity.
+18. Проверьте, что конфигурация в репозитории содержит все настройки конфигурации из teamcity
+
+Директория [.teamcity](https://github.com/LeonidKhoroshev/example-teamcity/tree/master/.teamcity/ExampleTeamcity)
+
 19. В ответе пришлите ссылку на репозиторий.
+
+Репозиторий [example-teamcity](https://github.com/LeonidKhoroshev/example-teamcity/tree/master)
 
 ---
