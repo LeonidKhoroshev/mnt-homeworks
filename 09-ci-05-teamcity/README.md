@@ -132,7 +132,7 @@ all:
 
 12. Сделайте push всех изменений в новую ветку репозитория.
 
-````
+```
 git commit -m "hunter"
 git push https://github.com/LeonidKhoroshev/example-teamcity feature/add_reply
 ```
