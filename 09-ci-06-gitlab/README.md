@@ -26,7 +26,6 @@
 
 Копируем код из файла в [репозитории](./repository), а также наполняем файлами аналогично видеоматериалам к занятию.
 
-![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git6.png)
 
 6. Проект должен быть публичным, остальные настройки по желанию.
 
@@ -36,9 +35,34 @@
 
 В репозитории содержится код проекта на Python. Проект — RESTful API сервис. Ваша задача — автоматизировать сборку образа с выполнением python-скрипта:
 
-Через pipeline-editor создаем наш pipeline в файле `.gitlab-ci.yml`
+Через pipeline-editor создаем наш pipeline в файле `.gitlab-ci.yml` следующего содержания:
+
+```
+stages:
+    - build
+    - deploy
+image: docker:20.10.5
+services:
+    - docker:20.10.5-dind
+builder:
+    stage: build
+    script:
+        - docker build -t $CI_REGISTRY/$CI_PROJECT_PATH/hello:gitlab-$CI_COMMIT_SHORT_SHA .
+    except:
+        - main
+deployer:
+    stage: deploy
+    script:
+        - docker build -t $CI_REGISTRY/$CI_PROJECT_PATH/hello:gitlab-$CI_COMMIT_SHORT_SHA .
+        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+        - docker push $CI_REGISTRY/$CI_PROJECT_PATH/hello:gitlab-$CI_COMMIT_SHORT_SHA
+    only:
+        - main
+```
 
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git7.png)
+
+Условия сборки:
 
 1. Образ собирается на основе [centos:7](https://hub.docker.com/_/centos?tab=tags&page=1&ordering=last_updated).
 2. Python версии не ниже 3.7.
@@ -46,7 +70,29 @@
 4. Создана директория `/python_api`.
 5. Скрипт из репозитория размещён в /python_api.
 6. Точка вызова: запуск скрипта.
-7. При комите в любую ветку должен собираться docker image с форматом имени hello:gitlab-$CI_COMMIT_SHORT_SHA . Образ должен быть выложен в Gitlab registry или yandex registry.   
+7. При комите в любую ветку должен собираться docker image с форматом имени hello:gitlab-$CI_COMMIT_SHORT_SHA . Образ должен быть выложен в Gitlab registry или yandex registry.
+
+Для выполнения условий сборки создадим 2 файла `Dockerfile` и `requirements.txt`.
+
+Dockerfile:
+```
+FROM centos:7
+RUN yum install python3 python3-pip -y
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
+WORKDIR /python_api
+COPY python-api.py python-api.py
+CMD ["python3", "python-api.py"]
+
+requirements.txt:
+```
+flask
+flask_restful
+flask_jsonpify
+```
+
+
+```
 
 ### Product Owner
 
