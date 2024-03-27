@@ -83,6 +83,7 @@ RUN pip3 install -r requirements.txt
 WORKDIR /python_api
 COPY python-api.py python-api.py
 CMD ["python3", "python-api.py"]
+```
 
 requirements.txt:
 ```
