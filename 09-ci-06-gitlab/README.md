@@ -2,18 +2,7 @@
 
 ## Подготовка к выполнению
 
-
-1. Или подготовьте к работе Managed GitLab от yandex cloud [по инструкции](https://cloud.yandex.ru/docs/managed-gitlab/operations/instance/instance-create) .
-Или создайте виртуальную машину из публичного образа [по инструкции](https://cloud.yandex.ru/marketplace/products/yc/gitlab ) .
-2. Создайте виртуальную машину и установите на нее gitlab runner, подключите к вашему серверу gitlab  [по инструкции](https://docs.gitlab.com/runner/install/linux-repository.html) .
-
-3. (* Необязательное задание повышенной сложности. )  Если вы уже знакомы с k8s попробуйте выполнить задание, запустив gitlab server и gitlab runner в k8s  [по инструкции](https://cloud.yandex.ru/docs/tutorials/infrastructure-management/gitlab-containers). 
-
-4. Создайте свой новый проект.
-5. Создайте новый репозиторий в GitLab, наполните его [файлами](./repository).
-6. Проект должен быть публичным, остальные настройки по желанию.
-
-Готовим нашу инфраструктуру в Yandex cloud в соответствии с п.3 (с использоватием кластера k8s):
+Готовим нашу инфраструктуру в Yandex cloud с использоватием кластера k8s:
 
 1. Создаем кластер k8s в минимальной конфигурации:
 
@@ -28,6 +17,18 @@
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git3.png)
 
 ВМ `cl1aorf4kh6830f6b7u3-ixex` создана автоматически при создании группы узлов.
+
+4. Создайте свой новый проект аналогично видеоматериалам к занятию:
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git4.png)
+
+5. Создайте новый репозиторий в GitLab, наполните его [файлами](./repository).
+
+Копируем код из файла в [репозитории](./repository), а также наполняем файлами аналогично видеоматериалам к занятию.
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git5.png)
+
+6. Проект должен быть публичным, остальные настройки по желанию.
 
 ## Основная часть
 
