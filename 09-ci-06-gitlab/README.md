@@ -26,7 +26,7 @@
 
 Копируем код из файла в [репозитории](./repository), а также наполняем файлами аналогично видеоматериалам к занятию.
 
-![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git5.png)
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git6.png)
 
 6. Проект должен быть публичным, остальные настройки по желанию.
 
@@ -35,6 +35,10 @@
 ### DevOps
 
 В репозитории содержится код проекта на Python. Проект — RESTful API сервис. Ваша задача — автоматизировать сборку образа с выполнением python-скрипта:
+
+Через pipeline-editor создаем наш pipeline в файле `.gitlab-ci.yml`
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git7.png)
 
 1. Образ собирается на основе [centos:7](https://hub.docker.com/_/centos?tab=tags&page=1&ordering=last_updated).
 2. Python версии не ниже 3.7.
