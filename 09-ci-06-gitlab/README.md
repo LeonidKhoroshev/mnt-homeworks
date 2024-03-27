@@ -17,6 +17,7 @@
 
 1. Создаем кластер k8s в минимальной конфигурации
 
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git1.png)
 
 
 ## Основная часть
