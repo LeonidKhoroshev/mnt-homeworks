@@ -52,6 +52,9 @@
 2. Текст с `{ "message": "Already started" }` на `{ "message": "Running"}`.
 3. Issue поставить label: feature.
 
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git6.png)
+
+
 ### Developer
 
 Пришёл новый Issue на доработку, вам нужно:
