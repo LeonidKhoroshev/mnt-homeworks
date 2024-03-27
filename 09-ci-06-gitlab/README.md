@@ -92,9 +92,6 @@ flask_restful
 flask_jsonpify
 ```
 
-
-```
-
 ### Product Owner
 
 Вашему проекту нужна бизнесовая доработка: нужно поменять JSON ответа на вызов метода GET `/rest/api/get_info`, необходимо создать Issue в котором указать:
