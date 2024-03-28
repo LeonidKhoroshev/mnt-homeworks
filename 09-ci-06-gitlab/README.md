@@ -4,12 +4,53 @@
 
 Готовим нашу инфраструктуру в Yandex cloud 
 
-Создаем 2 виртуальные машины
+Создаем 2 виртуальные машины (`Gitlab` сервер и `Alma`, для установки раннера)
 
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git1.png)
 
+Далее устанавливаем на ВМ `Alma linux` `Gitlab runner` по [инструкции](https://docs.gitlab.com/runner/install/linux-repository.html)
 
+Регистрируем раннер:
 
-6. Проект должен быть публичным, остальные настройки по желанию.
+```
+gitlab-runner register
+Enter the GitLab instance URL (for example, https://gitlab.com/):
+http://62.84.119.13/
+Enter the registration token:
+GR13489414kx7KhxzVC6ydXAt7KzF
+Enter a description for the runner:
+[runner.ru-central1.internal]: my_educational_runner
+Enter tags for the runner (comma-separated):
+linux
+Enter optional maintenance note for the runner:
+use only for homework
+```
+
+Проверяем, что получилось:
+
+```
+cat /etc/gitlab-runner/config.toml
+concurrent = 1
+check_interval = 0
+connection_max_age = "15m0s"
+shutdown_timeout = 0
+
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = "my_educational_runner"
+  url = "http://62.84.119.13/"
+  id = 1
+  token = "U2WEL8y8NLZXNsHN1LBw"
+  token_obtained_at = 2024-03-28T18:29:30Z
+  token_expires_at = 0001-01-01T00:00:00Z
+  executor = "shell"
+  [runners.cache]
+    MaxUploadedArchiveSize = 0
+```
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git2.png)
 
 ## Основная часть
 
