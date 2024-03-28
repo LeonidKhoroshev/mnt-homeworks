@@ -2,29 +2,11 @@
 
 ## Подготовка к выполнению
 
-Готовим нашу инфраструктуру в Yandex cloud с использоватием кластера k8s:
+Готовим нашу инфраструктуру в Yandex cloud 
 
-1. Создаем кластер k8s в минимальной конфигурации:
+Создаем 2 виртуальные машины
 
-![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git1.png)
 
-2. Создаем группу узлов для нашего кластера (также с минимальными конфигурациями):
-
-![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git2.png)
-
-3. Создаем виртуальную машину `gitlab` из [публичного образа](https://cloud.yandex.ru/marketplace/products/yc/gitlab):
-
-![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git3.png)
-
-ВМ `cl1aorf4kh6830f6b7u3-ixex` создана автоматически при создании группы узлов.
-
-4. Создайте свой новый проект аналогично видеоматериалам к занятию:
-
-![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git4.png)
-
-5. Создайте новый репозиторий в GitLab, наполните его [файлами](./repository).
-
-Копируем код из файла в [репозитории](./repository), а также наполняем файлами аналогично видеоматериалам к занятию.
 
 
 6. Проект должен быть публичным, остальные настройки по желанию.
