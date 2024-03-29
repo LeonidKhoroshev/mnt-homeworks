@@ -115,6 +115,11 @@ flask_restful
 flask_jsonpify
 ```
 
+Проверяем результат: сборка прошла, но не сразу (необходимо следить, чтобы название репозитория на Gitlab содержало только строчные буквы).
+
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git3.png)
+
 ### Product Owner
 
 Вашему проекту нужна бизнесовая доработка: нужно поменять JSON ответа на вызов метода GET `/rest/api/get_info`, необходимо создать Issue в котором указать:
