@@ -115,8 +115,11 @@ flask_restful
 flask_jsonpify
 ```
 
-Проверяем результат: сборка прошла, но не сразу (необходимо следить, чтобы название репозитория на Gitlab содержало только строчные буквы).
-
+Проверяем результат: сборка прошла, но не сразу, так как необходимо следить, чтобы название репозитория на Gitlab содержало только строчные буквы:
+```
+invalid argument "registry.gitlab.com/LeonidKhoroshev/netology-example/hello:gitlab-08854f8f" for "-t, --tag" flag: invalid reference format: repository name must be lowercase
+See 'docker build --help'.
+```
 
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git3.png)
 
