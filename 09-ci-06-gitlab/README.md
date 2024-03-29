@@ -139,7 +139,18 @@ See 'docker build --help'.
 Пришёл новый Issue на доработку, вам нужно:
 
 1. Создать отдельную ветку, связанную с этим Issue.
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git8.png)
+
 2. Внести изменения по тексту из задания.
+
+Часть кода с изменениями:
+```
+class Info(Resource):
+    def get(self):
+        return {'version': 3, 'method': 'GET', 'message': 'Running'}
+```
+
 3. Подготовить Merge Request, влить необходимые изменения в `master`, проверить, что сборка прошла успешно.
 
 
