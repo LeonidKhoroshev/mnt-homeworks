@@ -76,14 +76,12 @@ builder:
 deployer:
     stage: deploy
     script:
-        - docker build -t $CI_REGISTRY/$CI_PROJECT_PATH/hello:gitlab-$CI_COMMIT_SHORT_SHA .
+        - docker build -t $CI_REGISTRY/leonidkhoroshev/netology-example/python-api:latest .
         - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-        - docker push $CI_REGISTRY/$CI_PROJECT_PATH/hello:gitlab-$CI_COMMIT_SHORT_SHA
+        - docker push $CI_REGISTRY/leonidkhoroshev/netology-example/python-api:latest
     only:
         - main
 ```
-
-![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/09-ci-06-gitlab/screenshots/git7.png)
 
 Условия сборки:
 
