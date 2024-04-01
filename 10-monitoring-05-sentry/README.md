@@ -31,7 +31,9 @@ nano main.py
 import sentry_sdk
 
 sentry_sdk.init(
-  dsn="https://c2ddfe43de42839b9f65f26f6146f94f@o4507010720989184.ingest.us.sentry.io/4507011295805440",
+  dsn="https://5df851eb22dbfe0e39b5f3d628e4c1b3@o4507010720989184.ingest.us.sentry.io/4507011583442944",
+  traces_sample_rate=1.0,
+  profiles_sample_rate=1.0,
   environment="development",
   release="1.0"
   )
@@ -52,6 +54,11 @@ python3 main.py
 
 3. Перейдите в список событий проекта, выберите созданное вами и нажмите `Resolved`.
 4. В качестве решения задание предоставьте скриншот `Stack trace` из этого события и список событий проекта после нажатия `Resolved`.
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-05-sentry/screenshots/sentry3.png)
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-05-sentry/screenshots/sentry4.png)
+
+
 
 ## Задание 3
 
