@@ -1,4 +1,4 @@
-# Домашнее задание к занятию 16 «Платформа мониторинга Sentry»
+# Домашнее задание к занятию 16 «Платформа мониторинга Sentry» - Леонид Хорошев
 
 ## Задание 1
 
@@ -10,14 +10,9 @@ Free Cloud account имеет ограничения:
 - 10 000 transactions;
 - 1 GB attachments.
 
-Для подключения Free Cloud account:
+Для подключения Free Cloud account использован существующий аккаунт на Github
 
-- зайдите на sentry.io;
-- нажмите «Try for free»;
-- используйте авторизацию через ваш GitHub-аккаунт;
-- далее следуйте инструкциям.
-
-В качестве решения задания пришлите скриншот меню Projects.
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-05-sentry/screenshots/sentry1.png)
 
 ## Задание 2
 
