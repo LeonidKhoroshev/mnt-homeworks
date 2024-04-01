@@ -1,4 +1,4 @@
-# Домашнее задание к занятию 16 «Платформа мониторинга Sentry» - Леонид Хорошев
+![2024-04-01_23-21-50](https://github.com/LeonidKhoroshev/mnt-homeworks/assets/114744186/b2fde497-f740-44f8-8a9a-3db4429f858f)# Домашнее задание к занятию 16 «Платформа мониторинга Sentry» - Леонид Хорошев
 
 ## Задание 1
 
@@ -100,8 +100,79 @@ python3 main.py
 ## Задание повышенной сложности
 
 1. Создайте проект на ЯП Python или GO (около 10–20 строк), подключите к нему sentry SDK и отправьте несколько тестовых событий.
+
+Возьмем код из одного из предыдущих домашних заданий по [Gitlab](https://gitlab.com/leonidkhoroshev/netology-example/-/blob/main/app.py?ref_type=heads)
+
+```
+from flask import Flask, request
+from flask_restful import Resource, Api
+from json import dumps
+from flask_jsonpify import jsonify
+
+app = Flask(__name__)
+api = Api(app)
+
+class Info(Resource):
+    def get(self):
+        return {'version': 3, 'method': 'GET', 'message': 'Running'}
+
+api.add_resource(Info, '/get_info')
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5291')
+```
+
+Доработаем код, добавив `sentry_sdk`:
+```
+import sentry_sdk
+sentry_sdk.init(
+    dsn="https://e307abb7b062a597f1d7d4c1e9d5677c@o4507010720989184.ingest.us.sentry.io/4507013064032256",
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    traces_sample_rate=1.0,
+    # Set profiles_sample_rate to 1.0 to profile 100%
+    # of sampled transactions.
+    # We recommend adjusting this value in production.
+    profiles_sample_rate=1.0,
+)
+```
+Проверим еще раз `flask` и `sentry-sdk`:
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-05-sentry/screenshots/sentry10.png)
+
+Создадим второй проект в `sentry` `app_py` во фреймворке `flask`:
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-05-sentry/screenshots/sentry11.png)
+
 2. Поэкспериментируйте с различными передаваемыми параметрами, но помните об ограничениях Free учётной записи Cloud Sentry.
+
+Запустим наше приложение:
+
+```
+python3 app.py
+```
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-05-sentry/screenshots/sentry14.png)
+
+
+Выполним несколько запросов через браузер так, чтобы были несколько разных кодов ответов (404 и 200 например):
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-05-sentry/screenshots/sentry12.png)
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-05-sentry/screenshots/sentry13.png)
+
 3. В качестве решения задания пришлите скриншот меню issues вашего проекта и пример кода подключения sentry sdk/отсылки событий.
+
+Во вкладке `perfomance` увидили, как отображается информация о работе нашего приложения (хотя ОС macOS определена неправильно, так как приложение работает в Centos7):
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-05-sentry/screenshots/sentry15.png)
+
+Создадим новый адлерт по аналогии с заданием 2
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-05-sentry/screenshots/sentry16.png)
+
+Запускаем приложение и вводим несколько запросов с результатом 404:
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-05-sentry/screenshots/sentry17.png)
 
 ---
 
