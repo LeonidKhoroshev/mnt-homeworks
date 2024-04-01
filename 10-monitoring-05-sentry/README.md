@@ -71,10 +71,28 @@ python3 main.py
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-05-sentry/screenshots/sentry5.png)
 
 Если всё было выполнено правильно — через некоторое время вам на почту, привязанную к GitHub-аккаунту, придёт оповещение о произошедшем событии.
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-05-sentry/screenshots/sentry6.png)
+
 4. Если сообщение не пришло — проверьте настройки аккаунта Sentry (например, привязанную почту), что у вас не было 
 `sample issue` до того, как вы его сгенерировали, и то, что правило алёртинга выставлено по дефолту (во всех полях all).
 Также проверьте проект, в котором вы создаёте событие — возможно алёрт привязан к другому.
+
 5. В качестве решения задания пришлите скриншот тела сообщения из оповещения на почте.
+
+Проверим как алерт срабатывает при наступлении определенных событий (повторение ошибки более двух раз).
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-05-sentry/screenshots/sentry7.png)
+
+Переходим в веб-интерфейс и видим, что алерт сработал, так как было 4 попытки деления на ноль:
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-05-sentry/screenshots/sentry8.png)
+
+Также проверяем почту на предмет новых уведомлений:
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-05-sentry/screenshots/sentry9.png)
+
+
 6. Дополнительно поэкспериментируйте с правилами алёртинга. Выбирайте разные условия отправки и создавайте sample events. 
 
 ## Задание повышенной сложности
