@@ -17,9 +17,41 @@ Free Cloud account имеет ограничения:
 ## Задание 2
 
 1. Создайте python-проект и нажмите `Generate sample event` для генерации тестового события.
-1. Изучите информацию, представленную в событии.
-1. Перейдите в список событий проекта, выберите созданное вами и нажмите `Resolved`.
-1. В качестве решения задание предоставьте скриншот `Stack trace` из этого события и список событий проекта после нажатия `Resolved`.
+
+```
+mkdir sentry
+cd sentry
+pip3 install --upgrade sentry-sdk
+nano main.py
+```
+
+Далее создаем проект (код в файле `main.py` аналогично представленному в лекции)
+
+```
+import sentry_sdk
+
+sentry_sdk.init(
+  dsn="https://c2ddfe43de42839b9f65f26f6146f94f@o4507010720989184.ingest.us.sentry.io/4507011295805440",
+  environment="development",
+  release="1.0"
+  )
+
+if __name__ == "__main__":
+  division_zero = 1/0
+```
+
+2. Изучите информацию, представленную в событии.
+
+Запускаем наш проект и наблюдаем исключение `ZeroDivisionError`
+
+```
+python3 main.py
+```
+
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-05-sentry/screenshots/sentry2.png)
+
+3. Перейдите в список событий проекта, выберите созданное вами и нажмите `Resolved`.
+4. В качестве решения задание предоставьте скриншот `Stack trace` из этого события и список событий проекта после нажатия `Resolved`.
 
 ## Задание 3
 
