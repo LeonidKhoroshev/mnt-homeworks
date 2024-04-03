@@ -174,10 +174,8 @@ python3 app.py
 
 ![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-05-sentry/screenshots/sentury17.png)
 
----
+Возвращаемся в интерыейс sentry и видим соответствующую информацию:
 
-### Как оформить решение задания
-
-Выполненное домашнее задание пришлите в виде ссылки на .md-файл в вашем репозитории.
+![Alt_text](https://github.com/LeonidKhoroshev/mnt-homeworks/blob/MNT-video/10-monitoring-05-sentry/screenshots/sentury18.png)
 
 ---
